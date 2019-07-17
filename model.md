@@ -1,5 +1,0 @@
-# Model Definitions
-
-# ModelStruct
-
-# StructField

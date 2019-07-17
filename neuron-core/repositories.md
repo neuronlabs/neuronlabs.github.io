@@ -1,10 +1,9 @@
+---
+nav_order: 2
+parent: Core ORM
+grand_parent: Neuron
+---
 # Repositories
-
-```
-_NOTE: all the packages mentioned in this documentation are the part of the 
-`neuron-core` located on the `github.com/neuronlabs/neuron-core` 
-github repository._
-```
 
 Neuron-core use the repositories as the database/data store/service access.
 The main abstractions of the repositories are [repository.Factory](#factory) and a [repository.Repository](#repository).

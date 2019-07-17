@@ -1,0 +1,19 @@
+aux_links:
+  "Neuron Project": 
+    - "https://neuronlabs.github.io"
+  "Core": 
+    - "https://neuronlabs.github.io/neuron-core"
+  "Gateway": 
+    - "https://neuronlabs.github.io/neuron-gateway"
+  "PQ Repository":
+    - "https://neuronlabs.github.io/neuron-pq"
+  "Mongo Repository":
+    - "https://neuronlabs.github.io/neuron-mongo"
+plugins:
+  - jekyll-relative-links
+markdown: kramdown
+remote_theme: pmarsceill/just-the-docs
+theme: "just-the-docs"
+relative_links:
+  enabled: true
+  collections: true
