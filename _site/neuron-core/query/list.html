@@ -523,12 +523,59 @@
         <div id="main-content" class="page-content" role="main">
           <h1 id="list-method">List method</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Listing the data is one of the most important ORM functions.</p>
+
+<p>Neuron allows to query along multiple repositories joining all the relations for each single data instance.</p>
+
+<h2 id="code">Code</h2>
+
+<p>Creating a List Query requires to provide an address of slice of models, to the <code class="highlighter-rouge">query.New</code>, <code class="highlighter-rouge">query.NewC</code>, <code class="highlighter-rouge">query.MustNew</code>, <code class="highlighter-rouge">query.MustNewC</code> functions:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">User</span><span class="p">{}</span><span class="x">
+
+</span><span class="n">s</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="o">&amp;</span><span class="n">users</span><span class="p">)</span><span class="x">
+</span></code></pre></div></div>
+
+<p>Having prepared the query scope, we can specify what data we would like to obtain.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// add the field filter</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">AddStringFilter</span><span class="p">(</span><span class="s">"filter[users][id][$ne]=51"</span><span class="p">);</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="n">limit</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">5</span><span class="x">
+</span><span class="n">offset</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">12</span><span class="x">
+
+</span><span class="c">// limit the values number at specific offset</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Limit</span><span class="p">(</span><span class="n">limit</span><span class="p">,</span><span class="x"> </span><span class="n">offset</span><span class="p">);</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+
+</span><span class="c">// Set the return field set</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">SetFieldset</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span><span class="x"> </span><span class="s">"pets"</span><span class="p">);</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+
+</span><span class="c">// sort by the primary field in a decreasing order</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">SortBy</span><span class="p">(</span><span class="s">"-id"</span><span class="p">);</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>Such prepared query Scope is ready for basic query preparation.
+The <code class="highlighter-rouge">List</code> or <code class="highlighter-rouge">ListContext</code> methods would do the list process.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// if we have a context we need to include into consider use ListContext method</span><span class="x">
+</span><span class="c">// otherwise choose List.</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">List</span><span class="p">();</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="c">// now the scope value - variable 'users' should contain</span><span class="x">
+</span><span class="c">// the required values.</span><span class="x">
+</span></code></pre></div></div>
 
 
 

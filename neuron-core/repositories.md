@@ -1,7 +1,6 @@
 ---
 nav_order: 2
 parent: Core ORM
-grand_parent: Neuron
 ---
 # Repositories
 

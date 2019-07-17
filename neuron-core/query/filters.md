@@ -5,7 +5,9 @@ nav_order: 6
 ---
 # Filters 
 
-**Neuron**'s query results might get narrowed by the filters. The package `github.com/neuronlabs/neuron/query/filters` contains all the necessary structures and methods in order to specify what results we would like to obtain.
+**Neuron**'s query results might get narrowed by the filters. 
+
+The `github.com/neuronlabs/neuron/query/filters` package contains all the necessary structures and methods that allows to specify what results we would like to obtain from the query.
 
 The filtering system used by **Neuron** is based on the model's **collection**, **field** (optionally **subfield**), **operator** and the **values**. 
 

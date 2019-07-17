@@ -1,19 +1,43 @@
 ---
 nav_order: 1
 parent: Core ORM
-grand_parent: Neuron
 ---
 # Controller
 
-Controller is the structure used by the `neuron-core` that contains all the application context relation data. 
+Controller is the structure used by the `neuron-core` that contains all the application context relation data. The `*controller.Controller` contains most important variables used by all the packages in `neuron-core`. It contains mappings - model to structures, model to repository; model definitions, repositories and the configurations.
 
-* [Structure](#structure)
+* [Package](#package)
 * [Repositories](#repositories)
 * [Models](#models)
 
-## Structure
+## Package
 
-The `*controller.Controller` contains most important variables used by the `neuron-core`. It contains mappings - model to structures, model to repository; model definitions, repositories and the configurations.
+Package: `github.com/neuronlabs/neuron-core/controller` is the **Golang** package that contains **Core ORM** controller.
+
+In order to create and set new controller use the `New` or `MustNew` method with the provided config.
+
+```go
+package main
+
+import (
+    "github.com/neuronlabs/neuron-core/config"
+    "github.com/neuronlabs/neuron-core/controller"
+)
+
+var cfg *config.Controller
+
+func main() {
+    // Read the config
+    // cfg = ReadConfig()
+
+    c, err := controller.New(cfg)
+    // if the config is not valid the function would return an error.
+
+    // on the other hand creating the config with MustNew would panic on error.
+    c2 := controller.MustNew(cfg)
+}
+
+```
 
 ## Repositories
 
@@ -52,7 +76,7 @@ All the model's that are mapped with the _'my_repository'_ Repository, would use
 
 ## Models Mapping
 
-Controller is used to register the models. This creates [_*mapping.ModelStruct_](model.md#structure) for each model, which have a mapping of the [_fields_](model.md#field_structure)
+Controller is used to register the models. This creates [_*mapping.ModelStruct_](models.html#structure) for each model, which have a mapping of the [_fields_](models.html#field_structure)
 
 ## Registering Models
 

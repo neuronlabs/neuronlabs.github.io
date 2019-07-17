@@ -6,6 +6,8 @@ permalink: /neuron-core
 ---
 
 [![GoDoc](https://godoc.org/github.com/neuronlabs/neuron-core?status.svg)](https://godoc.org/github.com/neuronlabs/neuron-core)
+![Current Tag](https://img.shields.io/github/tag/neuronlabs/neuron-core.svg)
+![License](https://img.shields.io/github/license/neuronlabs/neuron-core.svg)
 
 # Core ORM
 

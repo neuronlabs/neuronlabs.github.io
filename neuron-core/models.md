@@ -1,7 +1,6 @@
 ---
 nav_order: 3
 parent: Core ORM
-grand_parent: Neuron
 ---
 # Models
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

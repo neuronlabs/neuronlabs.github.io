@@ -59,7 +59,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="http://localhost:4000/" class="navigation-list-link">Neuron</a>
             
@@ -512,8 +512,7 @@
             <nav class="breadcrumb-nav">
               <ol class="breadcrumb-nav-list">
                 
-                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core">Neuron</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/controller.html">Core ORM</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core">Core ORM</a></li>
                 
                 <li class="breadcrumb-nav-list-item"><span>Controller</span></li>
               </ol>
@@ -523,17 +522,41 @@
         <div id="main-content" class="page-content" role="main">
           <h1 id="controller">Controller</h1>
 
-<p>Controller is the structure used by the <code class="highlighter-rouge">neuron-core</code> that contains all the application context relation data.</p>
+<p>Controller is the structure used by the <code class="highlighter-rouge">neuron-core</code> that contains all the application context relation data. The <code class="highlighter-rouge">*controller.Controller</code> contains most important variables used by all the packages in <code class="highlighter-rouge">neuron-core</code>. It contains mappings - model to structures, model to repository; model definitions, repositories and the configurations.</p>
 
 <ul>
-  <li><a href="#structure">Structure</a></li>
+  <li><a href="#package">Package</a></li>
   <li><a href="#repositories">Repositories</a></li>
   <li><a href="#models">Models</a></li>
 </ul>
 
-<h2 id="structure">Structure</h2>
+<h2 id="package">Package</h2>
 
-<p>The <code class="highlighter-rouge">*controller.Controller</code> contains most important variables used by the <code class="highlighter-rouge">neuron-core</code>. It contains mappings - model to structures, model to repository; model definitions, repositories and the configurations.</p>
+<p>Package: <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/controller</code> is the <strong>Golang</strong> package that contains <strong>Core ORM</strong> controller.</p>
+
+<p>In order to create and set new controller use the <code class="highlighter-rouge">New</code> or <code class="highlighter-rouge">MustNew</code> method with the provided config.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+    </span><span class="s">"github.com/neuronlabs/neuron-core/config"</span><span class="x">
+    </span><span class="s">"github.com/neuronlabs/neuron-core/controller"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">var</span><span class="x"> </span><span class="n">cfg</span><span class="x"> </span><span class="o">*</span><span class="n">config</span><span class="o">.</span><span class="n">Controller</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="c">// Read the config</span><span class="x">
+    </span><span class="c">// cfg = ReadConfig()</span><span class="x">
+
+    </span><span class="n">c</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">controller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="x">
+    </span><span class="c">// if the config is not valid the function would return an error.</span><span class="x">
+
+    </span><span class="c">// on the other hand creating the config with MustNew would panic on error.</span><span class="x">
+    </span><span class="n">c2</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">controller</span><span class="o">.</span><span class="n">MustNew</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span></code></pre></div></div>
 
 <h2 id="repositories">Repositories</h2>
 
@@ -571,7 +594,7 @@
 
 <h2 id="models-mapping">Models Mapping</h2>
 
-<p>Controller is used to register the models. This creates <a href="model.md#structure"><em>*mapping.ModelStruct</em></a> for each model, which have a mapping of the <a href="model.md#field_structure"><em>fields</em></a></p>
+<p>Controller is used to register the models. This creates <a href="models.html#structure"><em>*mapping.ModelStruct</em></a> for each model, which have a mapping of the <a href="models.html#field_structure"><em>fields</em></a></p>
 
 <h2 id="registering-models">Registering Models</h2>
 
