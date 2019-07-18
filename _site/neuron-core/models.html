@@ -29,11 +29,11 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Neuronlabs Pages repository" />
 <meta property="og:description" content="Neuronlabs Pages repository" />
-<link rel="canonical" href="http://localhost:4000/neuron-core/models.html" />
-<meta property="og:url" content="http://localhost:4000/neuron-core/models.html" />
+<link rel="canonical" href="http://localhost:4000/neuron-core/models" />
+<meta property="og:url" content="http://localhost:4000/neuron-core/models" />
 <meta property="og:site_name" content="neuronlabs.github.io" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Models","url":"http://localhost:4000/neuron-core/models.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
+{"@type":"WebPage","headline":"Models","url":"http://localhost:4000/neuron-core/models","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -77,6 +77,14 @@
     
       
         
+      
+    
+      
+        
+      
+    
+      
+        
           <li class="navigation-list-item active">
             
             <a href="http://localhost:4000/neuron-core" class="navigation-list-link">Core ORM</a>
@@ -105,6 +113,10 @@
                   
                 
                   
+                
+                  
+                
+                  
                     <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/repositories.html" class="navigation-list-link">Repositories</a>
@@ -115,15 +127,98 @@
                   
                 
                   
-                
-                  
-                
-                  
                     <li class="navigation-list-item  active">
                       
-                      <a href="http://localhost:4000/neuron-core/models.html" class="navigation-list-link active">Models</a>
+                      <a href="http://localhost:4000/neuron-core/models" class="navigation-list-link active">Models</a>
+                      
+                        
+                        <ul class="navigation-list-child-list">
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/structure.html" class="navigation-list-link">Structure</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/field.html" class="navigation-list-link">Fields</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/relationship.html" class="navigation-list-link">Relationships</a>
+                              </li>
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/config.html" class="navigation-list-link">Config</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                        </ul>
                       
                     </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
                   
                 
                   
@@ -151,6 +246,10 @@
                             
                           
                             
+                          
+                            
+                          
+                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link">Insert</a>
                               </li>
@@ -162,6 +261,10 @@
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/get.html" class="navigation-list-link">Get</a>
                               </li>
+                            
+                          
+                            
+                          
                             
                           
                             
@@ -270,9 +373,17 @@
                             
                           
                             
+                          
+                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/errors/class.html" class="navigation-list-link">Class</a>
                               </li>
+                            
+                          
+                            
+                          
+                            
+                          
                             
                           
                             
@@ -358,12 +469,24 @@
     
       
         
+      
+    
+      
+        
           <li class="navigation-list-item">
             
             <a href="http://localhost:4000/neuron-gateway/" class="navigation-list-link">Gateway</a>
             
               
               <ul class="navigation-list-child-list ">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
                 
                   
                 
@@ -428,6 +551,10 @@
             <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
             
           </li>
+        
+      
+    
+      
         
       
     
@@ -538,283 +665,103 @@
         <div id="main-content" class="page-content" role="main">
           <h1 id="models">Models</h1>
 
+<p>Package: <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/mapping</code></p>
+
 <p>Neuron used struct types with specific fields as the models.</p>
 
 <p>The model structure were based on the <a href="https://jsonapi.org">JSON:API v1.0</a> specification. It’s design distinguished fields by their kinds. This feature made it easier to isolate the model’s by their own repositories.</p>
 
 <p>Neuron maps each model, analyze it’s fields with <strong>tags</strong> and creates <code class="highlighter-rouge">*mapping.ModelStruct</code>. These models are registered in the <code class="highlighter-rouge">Controller</code>.</p>
 
-<h2 id="model-structure">Model Structure</h2>
-
-<p>The <code class="highlighter-rouge">*ModelStruct</code> is a data structure that stores all prepared information about the ‘model’.</p>
-
-<p>This document would base it’s examples on the provided models:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Bird is the neuron model used for the documentation.</span><span class="x">
-</span><span class="c">// It's fields have cardcoded neuron types.</span><span class="x">
-</span><span class="k">type</span><span class="x"> </span><span class="n">Bird</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="n">ID</span><span class="x">   </span><span class="kt">int</span><span class="x">    </span><span class="s">`neuron:"type=primary"`</span><span class="x">
-    </span><span class="n">Name</span><span class="x"> </span><span class="kt">string</span><span class="x"> </span><span class="s">`neuron:"type=attr"`</span><span class="x">
-    </span><span class="n">Age</span><span class="x">  </span><span class="kt">int</span><span class="x">    </span><span class="s">`neuron:"type=attr"`</span><span class="x">
-
-    </span><span class="n">Specie</span><span class="x">       </span><span class="o">*</span><span class="n">BirdSpecie</span><span class="x"> </span><span class="s">`neuron:"type=relation"`</span><span class="x">
-    </span><span class="n">BirdSpecieID</span><span class="x"> </span><span class="kt">int</span><span class="x">       </span><span class="s">`neuron:"type=foreign"`</span><span class="x">
-</span><span class="p">}</span><span class="x">
-
-</span><span class="c">// BirdSpecie is the neuron model used for the documentation.</span><span class="x">
-</span><span class="c">// It defines the birds species.</span><span class="x">
-</span><span class="k">type</span><span class="x"> </span><span class="n">BirdSpecie</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="n">ID</span><span class="x">      </span><span class="kt">int</span><span class="x">
-    </span><span class="n">Name</span><span class="x">    </span><span class="kt">string</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-<p>A model stores following variables:</p>
-
-<ul>
-  <li>Type - specified <code class="highlighter-rouge">reflect.Type</code> that is dereferenced model type reflection.</li>
-  <li>Collection - pluralized name converted using <code class="highlighter-rouge">Controller's</code> NamerFunc.</li>
-  <li>Config - is the <code class="highlighter-rouge">*config.Model</code> matched for given model.</li>
-  <li>Store - is the <em>key</em>:<em>value</em> storage for given model.</li>
-  <li>Primary Key Field - is the <a href="#structfield">*mapping.StructField</a> of the model’s primary index field.</li>
-  <li>Attribute Fields - <em>(optional)</em> model may contain multiple <a href="#structfield">*mapping.StructField</a> attributes. An attribute is the non related information about the model stored directly in the model’s repository.</li>
-  <li>Relationship Fields - <em>(optional)</em> relationship fields represents references to the other models stored as struct fields.</li>
-  <li>ForeignKey Fields - <em>(optional)</em> foreign keys are the fields directly connected with the relationship. It defines matched <strong>primary key</strong> of the related field’s model.</li>
-  <li>Language Field - <em>(optional)</em> is a singleton (per model), optional field that defines <code class="highlighter-rouge">lanaguage</code> and <code class="highlighter-rouge">i18n</code> related values.</li>
-  <li>Filter Key Fields - <em>(optional)</em> filter key fields are the fields which values are not stored within the model’s repository. Their value should be used to specify some state that might be usable in the Hooks.</li>
-</ul>
-
-<h2 id="registering-models">Registering Models</h2>
-
-<p>Neuron requires to register the model before any operation starts.
-Registering model, stores it’s <code class="highlighter-rouge">*mapping.ModelStruct</code>  in the <code class="highlighter-rouge">Controller</code>.
-A controller can have only a single model related to each <code class="highlighter-rouge">reflect.Type</code> and a single <code class="highlighter-rouge">collection</code>.</p>
-
-<p>Register the models with the <code class="highlighter-rouge">RegisterModels</code> <code class="highlighter-rouge">Controller's</code> method.
-It takes the model value instances as arguments.
-If a model have relationship fields, all the related models must be registered at once. The order of the provided models doesn’t matter.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">c</span><span class="o">.</span><span class="n">RegisterModels</span><span class="p">(</span><span class="n">Bird</span><span class="p">{},</span><span class="x"> </span><span class="n">BirdSpecie</span><span class="p">{})</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="c">// the model definition is invalid.</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<h3 id="config">Config</h3>
-
-<p>While registering the models, each ModelConfig defined under model’s <code class="highlighter-rouge">collection</code> in the <code class="highlighter-rouge">Controller's</code> ` Config<code class="highlighter-rouge"> would be set in the </code>ModelStruct` definition.</p>
-
-<p>It’s <code class="highlighter-rouge">RepositoryName</code> value defines to which repository should the model be connected.</p>
-
-<p>The <code class="highlighter-rouge">Store</code> field is being copied to the model’s store values. This allows to specify repository related variables.</p>
-
-<p>The <code class="highlighter-rouge">AutoMigrate</code> flag is the information to the repository if the model should be migrated within the repository (database tables etc).</p>
-
-<h3 id="getting-model-struct">Getting Model Struct</h3>
-
-<p>Having our models registered, we might want to use it’s mapping structure.
-This would be done by the <code class="highlighter-rouge">Controller's</code> <code class="highlighter-rouge">ModelStruct</code> method:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">modelStruct</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">c</span><span class="o">.</span><span class="n">ModelStruct</span><span class="p">(</span><span class="n">Bird</span><span class="p">{})</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="c">// the model is not found within given controller.</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<h2 id="structfield">StructField</h2>
-
-<p>A <code class="highlighter-rouge">*mapping.StructField</code> is the mapped model’s field. It contains neuron information about given field, such as:</p>
-
-<ul>
-  <li>ModelStruct - the model where the field is defined</li>
-  <li>Neuron Name - is the field’s name converted using controller’s defined <code class="highlighter-rouge">NamerFunc</code>.</li>
-  <li>Name - the structField’s Name.</li>
-  <li>FieldKind - is the neuron kind of the field:
-    <ul>
-      <li>Primary Key</li>
-      <li>Foreign Key</li>
-      <li>Attribute</li>
-      <li>RelationshipSingle</li>
-      <li>RelationshipMultiple</li>
-      <li>Filter Key</li>
-      <li>Nested - for the nested attributes</li>
-    </ul>
-  </li>
-  <li>Nested - nested structure for the nested field types.</li>
-  <li><a href="#relationship">Relationship</a> - relationship contains information about the field’s relation to another model.</li>
-  <li>ReflectField - is the <code class="highlighter-rouge">reflect.StructField</code> reflection</li>
-  <li>Store - is the <em>key</em>:<em>value</em> storage for given field.</li>
-</ul>
-
-<h2 id="field-tags">Field Tags</h2>
-
-<p>In order to specify field’s specifictaion each field may be tagged with some specific <strong>tag</strong>. The basic struct tag is named: <code class="highlighter-rouge">neuron</code>. Under this tag there might be multiple <strong>tags</strong> seperated with <code class="highlighter-rouge">;</code> sign. Each tag may take additional <em>key</em>=<em>value</em> seperated with <code class="highlighter-rouge">,</code>.
-Fields tagged with <code class="highlighter-rouge">-</code> would not be mapped into neuron structures.</p>
-
-<p>Example:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">TestingModel</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="n">ID</span><span class="x">    </span><span class="kt">string</span><span class="x"> </span><span class="s">`neuron:"type=primary"`</span><span class="x">
-    </span><span class="n">Name</span><span class="x">  </span><span class="kt">string</span><span class="x"> </span><span class="s">`neuron:"type=attr;flags=omitempty,nosort"`</span><span class="x">
-
-    </span><span class="n">NonNeuronField</span><span class="x"> </span><span class="kt">int</span><span class="x"> </span><span class="s">`neuron:"-"`</span><span class="x">
-</span><span class="p">}</span><span class="x">
-
-</span><span class="c">// ID field has a neuron tags: `type` with value `primary`</span><span class="x">
-</span><span class="c">// Name field has tags:</span><span class="x">
-</span><span class="c">//  - 'type' with value 'attr' - Attribute field</span><span class="x">
-</span><span class="c">//  - 'flags' with values seperated by ',' - 'omitempty' and 'nosort'.</span><span class="x">
-</span><span class="c">// NonNeuronField has tag: '-' which defines that </span><span class="x">
-</span><span class="c">// this is not a neuron field, omit and don't map it.</span><span class="x">
-</span></code></pre></div></div>
-
-<p>Tags:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: right">Tag</th>
-      <th>Description</th>
-      <th style="text-align: center">Requirements</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">name</td>
-      <td>Define the name of the field</td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: right">type</td>
-      <td>Define the <a href="#field_type_tags">field type</a></td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: right">foreign</td>
-      <td>Define the name(‘s) for the foreign key(‘s) for given relationship</td>
-      <td style="text-align: center">Relationship</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">many2many</td>
-      <td>Defined given field as Many2Many relationship. If the values are provided, the first would be a foreign key and the second - related model’s foreign key.</td>
-      <td style="text-align: center">ToMany Relationship</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">flags</td>
-      <td>Struct field tag that allows to store the field’s <a href="#flags">flags</a></td>
-      <td style="text-align: center">-</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">-</td>
-      <td>Omits given field in mapping process</td>
-      <td style="text-align: center"> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="flags">Flags</h3>
-
-<p>Field’s flags changes the field’s definitions. They’re defined in the struct field’s tag under <code class="highlighter-rouge">neuron-&gt;flags</code> tag.
-It is also allowed to specify <strong>flags</strong> within the Field’s Config store.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: right">Flag</th>
-      <th>Description</th>
-      <th style="text-align: center">Requirements</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">client-id</td>
-      <td>Defines if the provided field allows to create new model instances with user defined ID values</td>
-      <td style="text-align: center">Primary Key Field</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">nofilter</td>
-      <td>Disallow to filter the model by given field</td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: right">nosort</td>
-      <td>Disallow to sort the model by given field</td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: right">omitempty</td>
-      <td>encoding/jsonapi would omit this field if it’s value is empty</td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: right">hidden</td>
-      <td>encoding/jsonapi would not marshal this field</td>
-      <td style="text-align: center"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: right">lang</td>
-      <td>given field is a language type field</td>
-      <td style="text-align: center">Attribute, Singleton in given Model</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">iso8601</td>
-      <td>Is the marshaling and unmarshaling information about the format of given time field</td>
-      <td style="text-align: center">Time field</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="field-types-tags">Field Types Tags</h3>
-
-<p>Allowed field type tags:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: right">Tag</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">primary, primary_key, primarykey, id, pk</td>
-      <td>primary key field definitions</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">attr, attribute</td>
-      <td>Attribute fields type</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">relation, relationship</td>
-      <td>Relationship field types</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">foreign, foreign_key, foreignkey, fk</td>
-      <td>Foreign key type definiton</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">filterkey</td>
-      <td>Filter Key type definition</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="relationship">Relationship</h2>
-
-<p>Relationship is the structure that contains information about the relationship field for given model.
-It defines information such that:</p>
-
-<ul>
-  <li>Kind - defines the relationship kind</li>
-  <li>ForeignKey - is the struct field that defines relationship’s foreign key</li>
-  <li>Join Model - (optional) used only for the ManyToMany models as the join model definition.</li>
-  <li>ManyToManyForeignkey - (optional) is the foreign key used on the ManyToMany relationship that defines related model’s foreign key within the <code class="highlighter-rouge">JoinModel</code></li>
-  <li>Struct - defines the related model structure.</li>
-</ul>
 
 
-
+          
+          <hr>
+          <h2 class="text-delta">Table of contents</h2>
+          
+          <ul>
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+              <li>
+                <a href="http://localhost:4000/neuron-core/models/structure.html">Structure</a>
+              </li>
+              
+            
+              
+            
+              
+              <li>
+                <a href="http://localhost:4000/neuron-core/models/field.html">Fields</a>
+              </li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+              <li>
+                <a href="http://localhost:4000/neuron-core/models/relationship.html">Relationships</a>
+              </li>
+              
+            
+              
+              <li>
+                <a href="http://localhost:4000/neuron-core/models/config.html">Config</a>
+              </li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          </ul>
           
         </div>
       </div>

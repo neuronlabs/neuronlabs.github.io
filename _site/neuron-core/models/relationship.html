@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   
-    <title>Insert - neuronlabs.github.io</title>
+    <title>Relationships - neuronlabs.github.io</title>
 
     
   
@@ -23,17 +23,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Insert | neuronlabs.github.io</title>
+<title>Relationships | neuronlabs.github.io</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Insert" />
+<meta property="og:title" content="Relationships" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Neuronlabs Pages repository" />
 <meta property="og:description" content="Neuronlabs Pages repository" />
-<link rel="canonical" href="http://localhost:4000/neuron-core/query/insert.html" />
-<meta property="og:url" content="http://localhost:4000/neuron-core/query/insert.html" />
+<link rel="canonical" href="http://localhost:4000/neuron-core/models/relationship.html" />
+<meta property="og:url" content="http://localhost:4000/neuron-core/models/relationship.html" />
 <meta property="og:site_name" content="neuronlabs.github.io" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Insert","url":"http://localhost:4000/neuron-core/query/insert.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
+{"@type":"WebPage","headline":"Relationships","url":"http://localhost:4000/neuron-core/models/relationship.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -127,7 +127,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="http://localhost:4000/neuron-core/models" class="navigation-list-link">Models</a>
                       
@@ -171,8 +171,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/models/relationship.html" class="navigation-list-link">Relationships</a>
+                              <li class="navigation-list-item  active">
+                                <a href="http://localhost:4000/neuron-core/models/relationship.html" class="navigation-list-link active">Relationships</a>
                               </li>
                             
                           
@@ -222,7 +222,7 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/query/" class="navigation-list-link">Query</a>
                       
@@ -250,8 +250,8 @@
                             
                           
                             
-                              <li class="navigation-list-item  active">
-                                <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link active">Insert</a>
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link">Insert</a>
                               </li>
                             
                           
@@ -656,91 +656,30 @@
               <ol class="breadcrumb-nav-list">
                 
                   <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core">Core ORM</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/query/">Query</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/models">Models</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Insert</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Relationships</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <h1 id="insert-data">Insert data</h1>
+          <h1 id="relationship">Relationship</h1>
 
-<p>In order to insert the data create a new query with the provided value:</p>
+<p>Relationship is the structure that contains information about the relationship field for given model.
+It defines information such that:</p>
 
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"Jack"</span><span class="p">}</span><span class="x">
-
-</span><span class="n">s</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<p>Any create query may have specified it’s Selected Fields. The selected fields are the field’s which values would be inserted into repository. By default the query processor scans provided <code class="highlighter-rouge">scope.Value</code> for non-zero field values and uses them as the selected fields. By specifing selected fields the query might insert zero-valued fields.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">SelectFields</span><span class="p">(</span><span class="s">"Name"</span><span class="p">,</span><span class="x"> </span><span class="s">"Age"</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<p>When the create query preparation is finished then the <code class="highlighter-rouge">Create</code> method should be used on the <code class="highlighter-rouge">query.Scope</code>.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Create</span><span class="p">()</span><span class="x">
-</span></code></pre></div></div>
-
-<p><strong>OR</strong> with respect  to the provided <code class="highlighter-rouge">context.Context</code>:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ctx</span><span class="p">,</span><span class="x"> </span><span class="n">cancel</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Background</span><span class="p">,</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">5</span><span class="p">)</span><span class="x">
-</span><span class="k">defer</span><span class="x"> </span><span class="n">cancel</span><span class="p">()</span><span class="x">
-
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">CreateContext</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span><span class="x">
-</span></code></pre></div></div>
-
-<p>If the query.Scope doesn’t have primary field selected then the repository <strong>should</strong> create new model instance and set it’s ID value into model’s primary field value.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">id</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">user</span><span class="o">.</span><span class="n">ID</span><span class="x"> </span><span class="c">// newly created model's ID</span><span class="x">
-</span></code></pre></div></div>
-
-<h2 id="relations">Relations</h2>
-
-<p>While inserting the model, <code class="highlighter-rouge">neuron</code> allows to set the relations for given model within a single query. If the relationship field <strong>primary</strong> field(s) is non-zero then after having the root model value created, the following relationship field would have it’s relationship model’s patched with the selected foreign keys.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"Thomas"</span><span class="p">,</span><span class="x"> </span><span class="n">Pets</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">Pet</span><span class="p">{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">5</span><span class="p">}}</span><span class="x">
-
-</span><span class="n">s</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-
-</span><span class="c">// the Create query would create new user with name Thomas</span><span class="x">
-</span><span class="c">// and patch pets model's with id: '5' so that it's foreign key is set</span><span class="x">
-</span><span class="c">// to newly created user's id.</span><span class="x">
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Create</span><span class="p">()</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<h3 id="errors">Errors</h3>
-
-<p>While patching the related values an error might occur. 
-If the query was within a single transaction, then</p>
-
-<p>// possible strategies:</p>
 <ul>
-  <li>transaction:
-    <ul>
-      <li>rollback all changes of the query</li>
-    </ul>
-  </li>
-  <li>non transactions:
-    <ul>
-      <li>return error - this should be done within a transaction - any change might provide</li>
-      <li>continue WithTimeout error</li>
-    </ul>
-  </li>
+  <li>Kind - defines the relationship kind</li>
+  <li>ForeignKey - is the struct field that defines relationship’s foreign key</li>
+  <li>Join Model - (optional) used only for the ManyToMany models as the join model definition.</li>
+  <li>ManyToManyForeignkey - (optional) is the foreign key used on the ManyToMany relationship that defines related model’s foreign key within the <code class="highlighter-rouge">JoinModel</code></li>
+  <li>Struct - defines the related model structure.</li>
 </ul>
+
+<!--
+TODO: Add relationship types documentation.
+-->
 
 
 

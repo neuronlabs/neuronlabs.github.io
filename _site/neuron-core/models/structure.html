@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   
-    <title>Insert - neuronlabs.github.io</title>
+    <title>Structure - neuronlabs.github.io</title>
 
     
   
@@ -23,17 +23,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Insert | neuronlabs.github.io</title>
+<title>Structure | neuronlabs.github.io</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Insert" />
+<meta property="og:title" content="Structure" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Neuronlabs Pages repository" />
 <meta property="og:description" content="Neuronlabs Pages repository" />
-<link rel="canonical" href="http://localhost:4000/neuron-core/query/insert.html" />
-<meta property="og:url" content="http://localhost:4000/neuron-core/query/insert.html" />
+<link rel="canonical" href="http://localhost:4000/neuron-core/models/structure.html" />
+<meta property="og:url" content="http://localhost:4000/neuron-core/models/structure.html" />
 <meta property="og:site_name" content="neuronlabs.github.io" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Insert","url":"http://localhost:4000/neuron-core/query/insert.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
+{"@type":"WebPage","headline":"Structure","url":"http://localhost:4000/neuron-core/models/structure.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -127,7 +127,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="http://localhost:4000/neuron-core/models" class="navigation-list-link">Models</a>
                       
@@ -143,8 +143,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/models/structure.html" class="navigation-list-link">Structure</a>
+                              <li class="navigation-list-item  active">
+                                <a href="http://localhost:4000/neuron-core/models/structure.html" class="navigation-list-link active">Structure</a>
                               </li>
                             
                           
@@ -222,7 +222,7 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/query/" class="navigation-list-link">Query</a>
                       
@@ -250,8 +250,8 @@
                             
                           
                             
-                              <li class="navigation-list-item  active">
-                                <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link active">Insert</a>
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link">Insert</a>
                               </li>
                             
                           
@@ -656,91 +656,81 @@
               <ol class="breadcrumb-nav-list">
                 
                   <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core">Core ORM</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/query/">Query</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/models">Models</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Insert</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Structure</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <h1 id="insert-data">Insert data</h1>
+          <h1 id="model-structure">Model Structure</h1>
 
-<p>In order to insert the data create a new query with the provided value:</p>
+<p>The <code class="highlighter-rouge">*ModelStruct</code> is a data structure that stores all prepared information about the ‘model’.</p>
 
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"Jack"</span><span class="p">}</span><span class="x">
+<p>This document would base it’s examples on the provided models:</p>
 
-</span><span class="n">s</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Bird is the neuron model used for the documentation.</span><span class="x">
+</span><span class="c">// It's fields have cardcoded neuron types.</span><span class="x">
+</span><span class="k">type</span><span class="x"> </span><span class="n">Bird</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">   </span><span class="kt">int</span><span class="x">    </span><span class="s">`neuron:"type=primary"`</span><span class="x">
+    </span><span class="n">Name</span><span class="x"> </span><span class="kt">string</span><span class="x"> </span><span class="s">`neuron:"type=attr"`</span><span class="x">
+    </span><span class="n">Age</span><span class="x">  </span><span class="kt">int</span><span class="x">    </span><span class="s">`neuron:"type=attr"`</span><span class="x">
 
-<p>Any create query may have specified it’s Selected Fields. The selected fields are the field’s which values would be inserted into repository. By default the query processor scans provided <code class="highlighter-rouge">scope.Value</code> for non-zero field values and uses them as the selected fields. By specifing selected fields the query might insert zero-valued fields.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">SelectFields</span><span class="p">(</span><span class="s">"Name"</span><span class="p">,</span><span class="x"> </span><span class="s">"Age"</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<p>When the create query preparation is finished then the <code class="highlighter-rouge">Create</code> method should be used on the <code class="highlighter-rouge">query.Scope</code>.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Create</span><span class="p">()</span><span class="x">
-</span></code></pre></div></div>
-
-<p><strong>OR</strong> with respect  to the provided <code class="highlighter-rouge">context.Context</code>:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ctx</span><span class="p">,</span><span class="x"> </span><span class="n">cancel</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Background</span><span class="p">,</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">5</span><span class="p">)</span><span class="x">
-</span><span class="k">defer</span><span class="x"> </span><span class="n">cancel</span><span class="p">()</span><span class="x">
-
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">CreateContext</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span><span class="x">
-</span></code></pre></div></div>
-
-<p>If the query.Scope doesn’t have primary field selected then the repository <strong>should</strong> create new model instance and set it’s ID value into model’s primary field value.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">id</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">user</span><span class="o">.</span><span class="n">ID</span><span class="x"> </span><span class="c">// newly created model's ID</span><span class="x">
-</span></code></pre></div></div>
-
-<h2 id="relations">Relations</h2>
-
-<p>While inserting the model, <code class="highlighter-rouge">neuron</code> allows to set the relations for given model within a single query. If the relationship field <strong>primary</strong> field(s) is non-zero then after having the root model value created, the following relationship field would have it’s relationship model’s patched with the selected foreign keys.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"Thomas"</span><span class="p">,</span><span class="x"> </span><span class="n">Pets</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">Pet</span><span class="p">{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">5</span><span class="p">}}</span><span class="x">
-
-</span><span class="n">s</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+    </span><span class="n">Specie</span><span class="x">       </span><span class="o">*</span><span class="n">BirdSpecie</span><span class="x"> </span><span class="s">`neuron:"type=relation"`</span><span class="x">
+    </span><span class="n">BirdSpecieID</span><span class="x"> </span><span class="kt">int</span><span class="x">       </span><span class="s">`neuron:"type=foreign"`</span><span class="x">
 </span><span class="p">}</span><span class="x">
 
-</span><span class="c">// the Create query would create new user with name Thomas</span><span class="x">
-</span><span class="c">// and patch pets model's with id: '5' so that it's foreign key is set</span><span class="x">
-</span><span class="c">// to newly created user's id.</span><span class="x">
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Create</span><span class="p">()</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="c">// BirdSpecie is the neuron model used for the documentation.</span><span class="x">
+</span><span class="c">// It defines the birds species.</span><span class="x">
+</span><span class="k">type</span><span class="x"> </span><span class="n">BirdSpecie</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">      </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Name</span><span class="x">    </span><span class="kt">string</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre></div></div>
+<p>A model stores following variables:</p>
 
-<h3 id="errors">Errors</h3>
-
-<p>While patching the related values an error might occur. 
-If the query was within a single transaction, then</p>
-
-<p>// possible strategies:</p>
 <ul>
-  <li>transaction:
-    <ul>
-      <li>rollback all changes of the query</li>
-    </ul>
-  </li>
-  <li>non transactions:
-    <ul>
-      <li>return error - this should be done within a transaction - any change might provide</li>
-      <li>continue WithTimeout error</li>
-    </ul>
-  </li>
+  <li>Type - specified <code class="highlighter-rouge">reflect.Type</code> that is dereferenced model type reflection.</li>
+  <li>Collection - pluralized name converted using <code class="highlighter-rouge">Controller's</code> NamerFunc.</li>
+  <li>Config - is the <code class="highlighter-rouge">*config.Model</code> matched for given model.</li>
+  <li>Store - is the <em>key</em>:<em>value</em> storage for given model.</li>
+  <li>Primary Key Field - is the <a href="#structfield">*mapping.StructField</a> of the model’s primary index field.</li>
+  <li>Attribute Fields - <em>(optional)</em> model may contain multiple <a href="#structfield">*mapping.StructField</a> attributes. An attribute is the non related information about the model stored directly in the model’s repository.</li>
+  <li>Relationship Fields - <em>(optional)</em> relationship fields represents references to the other models stored as struct fields.</li>
+  <li>ForeignKey Fields - <em>(optional)</em> foreign keys are the fields directly connected with the relationship. It defines matched <strong>primary key</strong> of the related field’s model.</li>
+  <li>Language Field - <em>(optional)</em> is a singleton (per model), optional field that defines <code class="highlighter-rouge">lanaguage</code> and <code class="highlighter-rouge">i18n</code> related values.</li>
+  <li>Filter Key Fields - <em>(optional)</em> filter key fields are the fields which values are not stored within the model’s repository. Their value should be used to specify some state that might be usable in the Hooks.</li>
 </ul>
+
+<h2 id="registering-models">Registering Models</h2>
+
+<p>Neuron requires to register the model before any operation starts.
+Registering model, stores it’s <code class="highlighter-rouge">*mapping.ModelStruct</code>  in the <code class="highlighter-rouge">Controller</code>.
+A controller can have only a single model related to each <code class="highlighter-rouge">reflect.Type</code> and a single <code class="highlighter-rouge">collection</code>.</p>
+
+<p>Register the models with the <code class="highlighter-rouge">RegisterModels</code> <code class="highlighter-rouge">Controller's</code> method.
+It takes the model value instances as arguments.
+If a model have relationship fields, all the related models must be registered at once. The order of the provided models doesn’t matter.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">c</span><span class="o">.</span><span class="n">RegisterModels</span><span class="p">(</span><span class="n">Bird</span><span class="p">{},</span><span class="x"> </span><span class="n">BirdSpecie</span><span class="p">{})</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="c">// the model definition is invalid.</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<h3 id="getting-model-struct">Getting Model Struct</h3>
+
+<p>Having our models registered, we might want to use it’s mapping structure.
+This would be done by the <code class="highlighter-rouge">Controller's</code> <code class="highlighter-rouge">ModelStruct</code> method:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">modelStruct</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">c</span><span class="o">.</span><span class="n">ModelStruct</span><span class="p">(</span><span class="n">Bird</span><span class="p">{})</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="c">// the model is not found within given controller.</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
 
 
 

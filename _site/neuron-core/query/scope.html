@@ -77,6 +77,14 @@
     
       
         
+      
+    
+      
+        
+      
+    
+      
+        
           <li class="navigation-list-item active">
             
             <a href="http://localhost:4000/neuron-core" class="navigation-list-link">Core ORM</a>
@@ -105,6 +113,10 @@
                   
                 
                   
+                
+                  
+                
+                  
                     <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/repositories.html" class="navigation-list-link">Repositories</a>
@@ -115,15 +127,98 @@
                   
                 
                   
-                
-                  
-                
-                  
                     <li class="navigation-list-item ">
                       
-                      <a href="http://localhost:4000/neuron-core/models.html" class="navigation-list-link">Models</a>
+                      <a href="http://localhost:4000/neuron-core/models" class="navigation-list-link">Models</a>
+                      
+                        
+                        <ul class="navigation-list-child-list">
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/structure.html" class="navigation-list-link">Structure</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/field.html" class="navigation-list-link">Fields</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/relationship.html" class="navigation-list-link">Relationships</a>
+                              </li>
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/models/config.html" class="navigation-list-link">Config</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                        </ul>
                       
                     </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
                   
                 
                   
@@ -151,6 +246,10 @@
                             
                           
                             
+                          
+                            
+                          
+                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link">Insert</a>
                               </li>
@@ -162,6 +261,10 @@
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/get.html" class="navigation-list-link">Get</a>
                               </li>
+                            
+                          
+                            
+                          
                             
                           
                             
@@ -270,9 +373,17 @@
                             
                           
                             
+                          
+                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/errors/class.html" class="navigation-list-link">Class</a>
                               </li>
+                            
+                          
+                            
+                          
+                            
+                          
                             
                           
                             
@@ -358,12 +469,24 @@
     
       
         
+      
+    
+      
+        
           <li class="navigation-list-item">
             
             <a href="http://localhost:4000/neuron-gateway/" class="navigation-list-link">Gateway</a>
             
               
               <ul class="navigation-list-child-list ">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
                 
                   
                 
@@ -428,6 +551,10 @@
             <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
             
           </li>
+        
+      
+    
+      
         
       
     
@@ -539,13 +666,11 @@
         <div id="main-content" class="page-content" role="main">
           <h1 id="scope">Scope</h1>
 
-<p>Neuron-core’s architecture allows to query models with their relations located on separate databases, stores or services. This forces the query to be very precise in it’s structure.</p>
-
-<p>Each query is stored as the <code class="highlighter-rouge">query.Scope</code> which consists of the following components:</p>
+<p>Scope is the data structure that contains all the information about given query. It keeps the information about the filtering, sorting, pagination, fieldset, selected fields, value and many other meta data. Each of it is accessible from the <code class="highlighter-rouge">*query.Scope</code> instance as the methods or variables:</p>
 
 <ul>
-  <li><a href="#id">ID</a> - unique query <strong>id</strong> number (UUID)</li>
-  <li><a href="#value">Value</a> - query specific value/values</li>
+  <li>ID - unique query <strong>id</strong> number (UUID)</li>
+  <li>Value - Query’s value defines the values to be returned (<em>GET</em> and <em>LIST</em>), created (<em>CREATE</em>), changed (<em>PATCH</em>) or deleted (<em>DELETE</em>).</li>
   <li><a href="filters.html">Filters</a> - query filters divided by the field types
     <ul>
       <li>Primary Key filters</li>
@@ -561,14 +686,89 @@
   <li><a href="pagination.html">Pagination</a> - query paginations</li>
 </ul>
 
-<h2 id="id">ID</h2>
+<h2 id="how-to-create-a-query-scope">How to create a query Scope?</h2>
 
-<p>Each query scope contains uniquely set ID stored as UUID.</p>
+<p>A query scope can be created from the root <code class="highlighter-rouge">github.com/neuronlabs/neuron-core</code>  or the <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/query</code> package.</p>
 
-<h2 id="value">Value</h2>
+<p>In order to create a new Scope, it’s valid root model must be provided as well as the controller that keeps related models.</p>
 
-<p>Query’s value defines the values to be returned (<em>GET</em> and <em>LIST</em>), created (<em>CREATE</em>), changed (<em>PATCH</em>) or deleted (<em>DELETE</em>).</p>
+<h3 id="create-with-value">Create with value</h3>
 
+<p>A scope might be create with model value using <code class="highlighter-rouge">ncore.Query</code>, <code class="highlighter-rouge">ncore.QueryC</code>, <code class="highlighter-rouge">ncore.MustQuery</code> or <code class="highlighter-rouge">ncore.MustQueryC</code>. The functions with the ‘C’ ending requires the controller to be provided as the argument, whereas the other use default controller.</p>
+
+<p>Example Must:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">Model</span><span class="p">{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">3</span><span class="p">}</span><span class="x">
+
+</span><span class="c">// This function creates new scope with the default controller and </span><span class="x">
+</span><span class="c">// the model 'm'. It panic on error.</span><span class="x">
+</span><span class="n">scope</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ncore</span><span class="o">.</span><span class="n">MustQuery</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="x">
+</span></code></pre></div></div>
+
+<p>Example QueryC:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// supposed that we have already a controller 'c' with registered 'Model'.</span><span class="x">
+</span><span class="n">m</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">Model</span><span class="p">{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">2</span><span class="p">,</span><span class="x"> </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"Anthony"</span><span class="p">}</span><span class="x">
+
+</span><span class="c">// This takes the 'c' controller and the model 'm'.</span><span class="x">
+</span><span class="c">// Returns error if the model's value is not valid.</span><span class="x">
+</span><span class="n">scope</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ncore</span><span class="o">.</span><span class="n">QueryC</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="x"> </span><span class="n">m</span><span class="p">)</span><span class="x">
+</span></code></pre></div></div>
+
+<p>These queries might be also created using direct access to the <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/query</code> with methods such as: <code class="highlighter-rouge">query.New</code>, <code class="highlighter-rouge">query.NewC</code>, <code class="highlighter-rouge">query.MustNew</code>, <code class="highlighter-rouge">query.MustNewC</code>. The functions with ‘C’ endings requires the <code class="highlighter-rouge">controller.Controller</code> to be provided as argument, whereas the others would use the Default Controller.</p>
+
+<h3 id="scope-allowed-values">Scope allowed Values</h3>
+
+<p>The scope keeps two types of values:</p>
+
+<ul>
+  <li>single instance - it is a non-nil pointer to the value model.</li>
+  <li>multiple instances - a non-nil pointer to the slice of pointers to models.</li>
+</ul>
+
+<p>Examples:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="x">
+</span><span class="n">single</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">Model</span><span class="p">{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">5</span><span class="p">}</span><span class="x">
+
+</span><span class="n">many</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">Model</span><span class="p">{{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">3</span><span class="p">}}</span><span class="x">
+</span><span class="c">// This would be correctly created scope - the value taken is an </span><span class="x">
+</span><span class="c">// address of model/slice instances.</span><span class="x">
+</span><span class="n">scope</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">MustNew</span><span class="p">(</span><span class="o">&amp;</span><span class="n">single</span><span class="p">)</span><span class="x">
+</span><span class="n">scope2</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">MustNew</span><span class="p">(</span><span class="o">&amp;</span><span class="n">many</span><span class="p">)</span><span class="x">
+
+</span><span class="c">// This two would panic, the value taken are not pointers to the structures.</span><span class="x">
+</span><span class="n">scope</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">MustNew</span><span class="p">(</span><span class="n">single</span><span class="p">)</span><span class="x">
+</span><span class="n">scope</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">MustNew</span><span class="p">(</span><span class="n">many</span><span class="p">)</span><span class="x">
+</span></code></pre></div></div>
+
+<h3 id="create-scope-with-modelstruct">Create scope with *ModelStruct</h3>
+
+<p>The query might be also created using a <code class="highlighter-rouge">*ModelStruct</code> with the package <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/query</code>. The method <code class="highlighter-rouge">query.NewModelC</code> is used to create scope with the ModelStructure. It requires controller to be provided as an argument, as well as information if the value of the query should be a slice or a single value instance <code class="highlighter-rouge">isMany</code> boolean. Created scope’s values would depend on the <code class="highlighter-rouge">isMany</code> flag, and their types would looks like:</p>
+
+<ul>
+  <li>isMany - true - <code class="highlighter-rouge">*[]*Type{}</code></li>
+  <li>isMany - false - <code class="highlighter-rouge">*Type{}</code></li>
+</ul>
+
+<p>Where the <code class="highlighter-rouge">Type</code> is the model registered in the controller.</p>
+
+<p>Example:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// supposed that the controller 'c' was previously </span><span class="x">
+</span><span class="c">// created with registered model 'Model'.</span><span class="x">
+
+</span><span class="n">mStruct</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">c</span><span class="o">.</span><span class="n">ModelStruct</span><span class="p">(</span><span class="n">Model</span><span class="p">{})</span><span class="x">
+</span><span class="n">scope</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">NewModelC</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="x"> </span><span class="n">mStruct</span><span class="p">,</span><span class="x"> </span><span class="no">true</span><span class="p">)</span><span class="x">
+
+</span><span class="k">var</span><span class="x"> </span><span class="n">many</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">Model</span><span class="x">
+</span><span class="c">// scope's Value is a non-nil pointer of slice of pointer models</span><span class="x">
+</span><span class="n">temp</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">scope</span><span class="o">.</span><span class="n">Value</span><span class="o">.</span><span class="p">(</span><span class="o">*</span><span class="p">[]</span><span class="o">*</span><span class="n">Model</span><span class="p">)</span><span class="x">
+
+</span><span class="c">// dereference the pointer to get the slice of models.</span><span class="x">
+</span><span class="n">many</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="o">*</span><span class="n">temp</span><span class="x">
+
+</span></code></pre></div></div>
 
 
 

@@ -4,15 +4,15 @@ parent: Core ORM
 ---
 # Controller
 
+Package: `github.com/neuronlabs/neuron-core/controller`
+
 Controller is the structure used by the `neuron-core` that contains all the application context relation data. The `*controller.Controller` contains most important variables used by all the packages in `neuron-core`. It contains mappings - model to structures, model to repository; model definitions, repositories and the configurations.
 
 * [Package](#package)
 * [Repositories](#repositories)
 * [Models](#models)
 
-## Package
-
-Package: `github.com/neuronlabs/neuron-core/controller` is the **Golang** package that contains **Core ORM** controller.
+## Create Controller
 
 In order to create and set new controller use the `New` or `MustNew` method with the provided config.
 

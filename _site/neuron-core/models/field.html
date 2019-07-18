@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   
-    <title>Insert - neuronlabs.github.io</title>
+    <title>Fields - neuronlabs.github.io</title>
 
     
   
@@ -23,17 +23,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Insert | neuronlabs.github.io</title>
+<title>Fields | neuronlabs.github.io</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Insert" />
+<meta property="og:title" content="Fields" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Neuronlabs Pages repository" />
 <meta property="og:description" content="Neuronlabs Pages repository" />
-<link rel="canonical" href="http://localhost:4000/neuron-core/query/insert.html" />
-<meta property="og:url" content="http://localhost:4000/neuron-core/query/insert.html" />
+<link rel="canonical" href="http://localhost:4000/neuron-core/models/field.html" />
+<meta property="og:url" content="http://localhost:4000/neuron-core/models/field.html" />
 <meta property="og:site_name" content="neuronlabs.github.io" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Insert","url":"http://localhost:4000/neuron-core/query/insert.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
+{"@type":"WebPage","headline":"Fields","url":"http://localhost:4000/neuron-core/models/field.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -127,7 +127,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="http://localhost:4000/neuron-core/models" class="navigation-list-link">Models</a>
                       
@@ -151,8 +151,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/models/field.html" class="navigation-list-link">Fields</a>
+                              <li class="navigation-list-item  active">
+                                <a href="http://localhost:4000/neuron-core/models/field.html" class="navigation-list-link active">Fields</a>
                               </li>
                             
                           
@@ -222,7 +222,7 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/query/" class="navigation-list-link">Query</a>
                       
@@ -250,8 +250,8 @@
                             
                           
                             
-                              <li class="navigation-list-item  active">
-                                <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link active">Insert</a>
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link">Insert</a>
                               </li>
                             
                           
@@ -656,91 +656,191 @@
               <ol class="breadcrumb-nav-list">
                 
                   <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core">Core ORM</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/query/">Query</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/models">Models</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Insert</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Fields</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <h1 id="insert-data">Insert data</h1>
+          <h1 id="structfield">StructField</h1>
 
-<p>In order to insert the data create a new query with the provided value:</p>
+<p>A <code class="highlighter-rouge">*mapping.StructField</code> is the mapped model’s field. It contains neuron information about given field, such as:</p>
 
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"Jack"</span><span class="p">}</span><span class="x">
-
-</span><span class="n">s</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<p>Any create query may have specified it’s Selected Fields. The selected fields are the field’s which values would be inserted into repository. By default the query processor scans provided <code class="highlighter-rouge">scope.Value</code> for non-zero field values and uses them as the selected fields. By specifing selected fields the query might insert zero-valued fields.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">SelectFields</span><span class="p">(</span><span class="s">"Name"</span><span class="p">,</span><span class="x"> </span><span class="s">"Age"</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<p>When the create query preparation is finished then the <code class="highlighter-rouge">Create</code> method should be used on the <code class="highlighter-rouge">query.Scope</code>.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Create</span><span class="p">()</span><span class="x">
-</span></code></pre></div></div>
-
-<p><strong>OR</strong> with respect  to the provided <code class="highlighter-rouge">context.Context</code>:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ctx</span><span class="p">,</span><span class="x"> </span><span class="n">cancel</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Background</span><span class="p">,</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">5</span><span class="p">)</span><span class="x">
-</span><span class="k">defer</span><span class="x"> </span><span class="n">cancel</span><span class="p">()</span><span class="x">
-
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">CreateContext</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span><span class="x">
-</span></code></pre></div></div>
-
-<p>If the query.Scope doesn’t have primary field selected then the repository <strong>should</strong> create new model instance and set it’s ID value into model’s primary field value.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">id</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">user</span><span class="o">.</span><span class="n">ID</span><span class="x"> </span><span class="c">// newly created model's ID</span><span class="x">
-</span></code></pre></div></div>
-
-<h2 id="relations">Relations</h2>
-
-<p>While inserting the model, <code class="highlighter-rouge">neuron</code> allows to set the relations for given model within a single query. If the relationship field <strong>primary</strong> field(s) is non-zero then after having the root model value created, the following relationship field would have it’s relationship model’s patched with the selected foreign keys.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"Thomas"</span><span class="p">,</span><span class="x"> </span><span class="n">Pets</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">Pet</span><span class="p">{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">5</span><span class="p">}}</span><span class="x">
-
-</span><span class="n">s</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">query</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-
-</span><span class="c">// the Create query would create new user with name Thomas</span><span class="x">
-</span><span class="c">// and patch pets model's with id: '5' so that it's foreign key is set</span><span class="x">
-</span><span class="c">// to newly created user's id.</span><span class="x">
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Create</span><span class="p">()</span><span class="x">
-</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre></div></div>
-
-<h3 id="errors">Errors</h3>
-
-<p>While patching the related values an error might occur. 
-If the query was within a single transaction, then</p>
-
-<p>// possible strategies:</p>
 <ul>
-  <li>transaction:
+  <li>ModelStruct - the model where the field is defined</li>
+  <li>Neuron Name - is the field’s name converted using controller’s defined <code class="highlighter-rouge">NamerFunc</code>.</li>
+  <li>Name - the structField’s Name.</li>
+  <li>FieldKind - is the neuron kind of the field:
     <ul>
-      <li>rollback all changes of the query</li>
+      <li>Primary Key</li>
+      <li>Foreign Key</li>
+      <li>Attribute</li>
+      <li>RelationshipSingle</li>
+      <li>RelationshipMultiple</li>
+      <li>Filter Key</li>
+      <li>Nested - for the nested attributes</li>
     </ul>
   </li>
-  <li>non transactions:
-    <ul>
-      <li>return error - this should be done within a transaction - any change might provide</li>
-      <li>continue WithTimeout error</li>
-    </ul>
-  </li>
+  <li>Nested - nested structure for the nested field types.</li>
+  <li><a href="#relationship">Relationship</a> - relationship contains information about the field’s relation to another model.</li>
+  <li>ReflectField - is the <code class="highlighter-rouge">reflect.StructField</code> reflection</li>
+  <li>Store - is the <em>key</em>:<em>value</em> storage for given field.</li>
 </ul>
+
+<h2 id="field-tags">Field Tags</h2>
+
+<p>In order to specify field’s specifictaion each field may be tagged with some specific <strong>tag</strong>. The basic struct tag is named: <code class="highlighter-rouge">neuron</code>. Under this tag there might be multiple <strong>tags</strong> seperated with <code class="highlighter-rouge">;</code> sign. Each tag may take additional <em>key</em>=<em>value</em> seperated with <code class="highlighter-rouge">,</code>.
+Fields tagged with <code class="highlighter-rouge">-</code> would not be mapped into neuron structures.</p>
+
+<p>Example:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">TestingModel</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">    </span><span class="kt">string</span><span class="x"> </span><span class="s">`neuron:"type=primary"`</span><span class="x">
+    </span><span class="n">Name</span><span class="x">  </span><span class="kt">string</span><span class="x"> </span><span class="s">`neuron:"type=attr;flags=omitempty,nosort"`</span><span class="x">
+
+    </span><span class="n">NonNeuronField</span><span class="x"> </span><span class="kt">int</span><span class="x"> </span><span class="s">`neuron:"-"`</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="c">// ID field has a neuron tags: `type` with value `primary`</span><span class="x">
+</span><span class="c">// Name field has tags:</span><span class="x">
+</span><span class="c">//  - 'type' with value 'attr' - Attribute field</span><span class="x">
+</span><span class="c">//  - 'flags' with values seperated by ',' - 'omitempty' and 'nosort'.</span><span class="x">
+</span><span class="c">// NonNeuronField has tag: '-' which defines that </span><span class="x">
+</span><span class="c">// this is not a neuron field, omit and don't map it.</span><span class="x">
+</span></code></pre></div></div>
+
+<p>Tags:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Tag</th>
+      <th>Description</th>
+      <th style="text-align: center">Requirements</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">name</td>
+      <td>Define the name of the field</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">type</td>
+      <td>Define the <a href="#field_type_tags">field type</a></td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">foreign</td>
+      <td>Define the name(‘s) for the foreign key(‘s) for given relationship</td>
+      <td style="text-align: center">Relationship</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">many2many</td>
+      <td>Defined given field as Many2Many relationship. If the values are provided, the first would be a foreign key and the second - related model’s foreign key.</td>
+      <td style="text-align: center">ToMany Relationship</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">flags</td>
+      <td>Struct field tag that allows to store the field’s <a href="#flags">flags</a></td>
+      <td style="text-align: center">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">-</td>
+      <td>Omits given field in mapping process</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="flags">Flags</h3>
+
+<p>Field’s flags changes the field’s definitions. They’re defined in the struct field’s tag under <code class="highlighter-rouge">neuron-&gt;flags</code> tag.
+It is also allowed to specify <strong>flags</strong> within the Field’s Config store.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Flag</th>
+      <th>Description</th>
+      <th style="text-align: center">Requirements</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">client-id</td>
+      <td>Defines if the provided field allows to create new model instances with user defined ID values</td>
+      <td style="text-align: center">Primary Key Field</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">nofilter</td>
+      <td>Disallow to filter the model by given field</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">nosort</td>
+      <td>Disallow to sort the model by given field</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">omitempty</td>
+      <td>encoding/jsonapi would omit this field if it’s value is empty</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">hidden</td>
+      <td>encoding/jsonapi would not marshal this field</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">lang</td>
+      <td>given field is a language type field</td>
+      <td style="text-align: center">Attribute, Singleton in given Model</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">iso8601</td>
+      <td>Is the marshaling and unmarshaling information about the format of given time field</td>
+      <td style="text-align: center">Time field</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="field-types-tags">Field Types Tags</h3>
+
+<p>Allowed field type tags:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Tag</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">primary, primary_key, primarykey, id, pk</td>
+      <td>primary key field definitions</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">attr, attribute</td>
+      <td>Attribute fields type</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">relation, relationship</td>
+      <td>Relationship field types</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">foreign, foreign_key, foreignkey, fk</td>
+      <td>Foreign key type definiton</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">filterkey</td>
+      <td>Filter Key type definition</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
