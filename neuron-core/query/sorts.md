@@ -1,13 +1,30 @@
 ---
 parent: Query
 grand_parent: Core ORM
-nav_order: 8
+nav_order: 10
 ---
 # Sorts
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Neuron allows to sort the `List` method results. The sorting is based on the provided field's value. It allows both `ascending` and `desceding` ordering.
+
+```
+NOTE: Current implementation allows sorting by the fields of the query scope's root model only.
+```
+
+## Scope Sorting
+
+By default scope sorts by the primary field values in ascending order.
+
+In order to sort the results by other fields, `SortBy` scope method should be used.
+
+The function takes multiple string 'fields' as an arguments. By default each sort field would be in `ascending` order. In order to change it into `descending` order the `-` sign should be used before given 'field'.
+
+Example:
+
+```go
+// Sort the scope's result by the name, and if that matches sort by the age in 
+// desceding order.
+err = scope.SortBy("name", "-age")
+```
+
+This would result in sorting the results by the `name`. In case multiple fields would match, these would be sorted by the `age` in desceding order.

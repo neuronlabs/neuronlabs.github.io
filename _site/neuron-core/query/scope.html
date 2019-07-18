@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   
-    <title>Controller - neuronlabs.github.io</title>
+    <title>Scope - neuronlabs.github.io</title>
 
     
   
@@ -23,17 +23,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Controller | neuronlabs.github.io</title>
+<title>Scope | neuronlabs.github.io</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Controller" />
+<meta property="og:title" content="Scope" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Neuronlabs Pages repository" />
 <meta property="og:description" content="Neuronlabs Pages repository" />
-<link rel="canonical" href="http://localhost:4000/neuron-core/controller.html" />
-<meta property="og:url" content="http://localhost:4000/neuron-core/controller.html" />
+<link rel="canonical" href="http://localhost:4000/neuron-core/query/scope.html" />
+<meta property="og:url" content="http://localhost:4000/neuron-core/query/scope.html" />
 <meta property="og:site_name" content="neuronlabs.github.io" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Controller","url":"http://localhost:4000/neuron-core/controller.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
+{"@type":"WebPage","headline":"Scope","url":"http://localhost:4000/neuron-core/query/scope.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -85,9 +85,9 @@
               <ul class="navigation-list-child-list ">
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
-                      <a href="http://localhost:4000/neuron-core/controller.html" class="navigation-list-link active">Controller</a>
+                      <a href="http://localhost:4000/neuron-core/controller.html" class="navigation-list-link">Controller</a>
                       
                     </li>
                   
@@ -127,7 +127,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="http://localhost:4000/neuron-core/query/" class="navigation-list-link">Query</a>
                       
@@ -141,8 +141,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/query/scope.html" class="navigation-list-link">Scope</a>
+                              <li class="navigation-list-item  active">
+                                <a href="http://localhost:4000/neuron-core/query/scope.html" class="navigation-list-link active">Scope</a>
                               </li>
                             
                           
@@ -529,102 +529,46 @@
               <ol class="breadcrumb-nav-list">
                 
                   <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core">Core ORM</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/query/">Query</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Controller</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Scope</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <h1 id="controller">Controller</h1>
+          <h1 id="scope">Scope</h1>
 
-<p>Controller is the structure used by the <code class="highlighter-rouge">neuron-core</code> that contains all the application context relation data. The <code class="highlighter-rouge">*controller.Controller</code> contains most important variables used by all the packages in <code class="highlighter-rouge">neuron-core</code>. It contains mappings - model to structures, model to repository; model definitions, repositories and the configurations.</p>
+<p>Neuron-core’s architecture allows to query models with their relations located on separate databases, stores or services. This forces the query to be very precise in it’s structure.</p>
 
-<ul>
-  <li><a href="#package">Package</a></li>
-  <li><a href="#repositories">Repositories</a></li>
-  <li><a href="#models">Models</a></li>
-</ul>
-
-<h2 id="package">Package</h2>
-
-<p>Package: <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/controller</code> is the <strong>Golang</strong> package that contains <strong>Core ORM</strong> controller.</p>
-
-<p>In order to create and set new controller use the <code class="highlighter-rouge">New</code> or <code class="highlighter-rouge">MustNew</code> method with the provided config.</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
-
-</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
-    </span><span class="s">"github.com/neuronlabs/neuron-core/config"</span><span class="x">
-    </span><span class="s">"github.com/neuronlabs/neuron-core/controller"</span><span class="x">
-</span><span class="p">)</span><span class="x">
-
-</span><span class="k">var</span><span class="x"> </span><span class="n">cfg</span><span class="x"> </span><span class="o">*</span><span class="n">config</span><span class="o">.</span><span class="n">Controller</span><span class="x">
-
-</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="c">// Read the config</span><span class="x">
-    </span><span class="c">// cfg = ReadConfig()</span><span class="x">
-
-    </span><span class="n">c</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">controller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="x">
-    </span><span class="c">// if the config is not valid the function would return an error.</span><span class="x">
-
-    </span><span class="c">// on the other hand creating the config with MustNew would panic on error.</span><span class="x">
-    </span><span class="n">c2</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">controller</span><span class="o">.</span><span class="n">MustNew</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="x">
-</span><span class="p">}</span><span class="x">
-
-</span></code></pre></div></div>
-
-<h2 id="repositories">Repositories</h2>
-
-<p>The <code class="highlighter-rouge">neuron-core</code> uses the abstraction of the <a href="/neuron-core/repositories.html#repository"><em>repository.Repository</em></a> as a data source. Controller registers and stores them, so that the related models might use their data access.</p>
-
-<h3 id="register-repository">Register Repository</h3>
-
-<p>The repositories might be stored and registered in two ways:</p>
+<p>Each query is stored as the <code class="highlighter-rouge">query.Scope</code> which consists of the following components:</p>
 
 <ul>
-  <li>With the <a href="config.md#controller">Controller Config</a></li>
-  <li>By using <code class="highlighter-rouge">RegisterRepository</code> Controller method</li>
+  <li><a href="#id">ID</a> - unique query <strong>id</strong> number (UUID)</li>
+  <li><a href="#value">Value</a> - query specific value/values</li>
+  <li><a href="filters.html">Filters</a> - query filters divided by the field types
+    <ul>
+      <li>Primary Key filters</li>
+      <li>Foreign Keys filters</li>
+      <li>Attribute filters</li>
+      <li>Relationship filters</li>
+      <li>Filter Keys filters</li>
+    </ul>
+  </li>
+  <li><a href="fieldset.html">Fieldset</a> - set of fields that must be returned with their values from the repository</li>
+  <li><a href="selected_fields.html">Selected Fields</a> - set of fields selected to create/change any repository model</li>
+  <li><a href="sorts.html">Sorting Order</a> - sorting order of the query</li>
+  <li><a href="pagination.html">Pagination</a> - query paginations</li>
 </ul>
 
-<p>The repository configurations provided with the <a href="config.md#controller"><em>Controller Config</em></a> would be registered while createing the <code class="highlighter-rouge">New</code> Controller.</p>
+<h2 id="id">ID</h2>
 
-<p>The <code class="highlighter-rouge">RegisterRepository</code> allows to store manually the <a href="config.md#repository"><em>*config.Repository</em></a> for the given ‘name’ within given Controller.</p>
+<p>Each query scope contains uniquely set ID stored as UUID.</p>
 
-<p>Example:</p>
+<h2 id="value">Value</h2>
 
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cfg</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">config</span><span class="o">.</span><span class="n">Repository</span><span class="p">{</span><span class="x">
-    </span><span class="n">Username</span><span class="o">:</span><span class="x"> </span><span class="n">testing</span><span class="p">,</span><span class="x">
-    </span><span class="n">Password</span><span class="o">:</span><span class="x"> </span><span class="n">testing</span><span class="p">,</span><span class="x">
-    </span><span class="n">DBName</span><span class="o">:</span><span class="x"> </span><span class="n">testing1</span><span class="p">,</span><span class="x">
-    </span><span class="n">Port</span><span class="o">:</span><span class="x"> </span><span class="m">5432</span><span class="p">,</span><span class="x">
-    </span><span class="n">Host</span><span class="o">:</span><span class="x"> </span><span class="n">localhost</span><span class="p">,</span><span class="x">
-</span><span class="p">}</span><span class="x">
+<p>Query’s value defines the values to be returned (<em>GET</em> and <em>LIST</em>), created (<em>CREATE</em>), changed (<em>PATCH</em>) or deleted (<em>DELETE</em>).</p>
 
-</span><span class="n">err</span><span class="x">  </span><span class="o">=</span><span class="x"> </span><span class="n">c</span><span class="o">.</span><span class="n">RegisterRepository</span><span class="p">(</span><span class="s">"my_repository"</span><span class="p">,</span><span class="x"> </span><span class="n">cfg</span><span class="p">)</span><span class="x">
-</span></code></pre></div></div>
-
-<p>In the example above the following Repository config is stored under the <em>‘my_repository’</em> key.</p>
-
-<p>All the model’s that are mapped with the <em>‘my_repository’</em> Repository, would use the Factory repository credentials shown above.</p>
-
-<h2 id="models-mapping">Models Mapping</h2>
-
-<p>Controller is used to register the models. This creates <a href="models.html#structure"><em>*mapping.ModelStruct</em></a> for each model, which have a mapping of the <a href="models.html#field_structure"><em>fields</em></a></p>
-
-<h2 id="registering-models">Registering Models</h2>
-
-<p>Model register process should begin <strong>only</strong> when the related <strong>Repositories</strong> are already registered. Each model after being mapped, gets their related <a href="repository.md#repository">Repository</a> created by it’s <a href="repository.md#factory"><em>Factory</em></a> for it’s <a href="model.md#structure">Model mapping</a></p>
-
-<p>In order to have an model mapping the models needs to be registered within the controller:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span><span class="x"> </span><span class="n">c</span><span class="x"> </span><span class="o">*</span><span class="n">controller</span><span class="o">.</span><span class="n">Controller</span><span class="x">
-
-</span><span class="n">c</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">controller</span><span class="o">.</span><span class="n">MustGetNew</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="x">
-
-</span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">c</span><span class="o">.</span><span class="n">RegisterModels</span><span class="p">(</span><span class="n">Model</span><span class="p">{},</span><span class="x"> </span><span class="n">User</span><span class="p">{},</span><span class="x"> </span><span class="n">Dog</span><span class="p">{},</span><span class="x"> </span><span class="n">Cat</span><span class="p">{})</span><span class="x">
-</span><span class="o">...</span><span class="x">
-</span></code></pre></div></div>
 
 
 

@@ -23,7 +23,10 @@ Each subclassifaction is defined as a different bitwise length number, where the
 Example:
 ```
  44205263 in a binary form is 00000010101000101000010011001111 which decomposes into:
- 0000001 - major (7 bit) - 1
+ 
+         0000001  - major (7 bit)  - 1
+      0101000101  - minor (10 bit) - 325 
+ 000010011001111  - index (15 bit) - 1231
 ```
 
 ### Class instances

@@ -77,10 +77,6 @@
     
       
         
-      
-    
-      
-        
           <li class="navigation-list-item active">
             
             <a href="http://localhost:4000/neuron-core" class="navigation-list-link">Core ORM</a>
@@ -146,6 +142,16 @@
                           
                             
                               <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/scope.html" class="navigation-list-link">Scope</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link">Insert</a>
                               </li>
                             
@@ -175,11 +181,11 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/patch.html" class="navigation-list-link">Patch</a>
                               </li>
+                            
+                          
                             
                           
                             
@@ -199,12 +205,14 @@
                             
                           
                             
-                          
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/fieldset.html" class="navigation-list-link">Fieldset</a>
+                              </li>
                             
                           
                             
                               <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/query/fieldset.html" class="navigation-list-link">Fieldset</a>
+                                <a href="http://localhost:4000/neuron-core/query/selected_fields.html" class="navigation-list-link">Selected Fields</a>
                               </li>
                             
                           
@@ -217,12 +225,6 @@
                             
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/pagination.html" class="navigation-list-link">Pagination</a>
-                              </li>
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/query/selected_fields.html" class="navigation-list-link">Selected Fields</a>
                               </li>
                             
                           
@@ -311,6 +313,8 @@
                           
                             
                           
+                            
+                          
                         </ul>
                       
                     </li>
@@ -322,6 +326,8 @@
                       <a href="http://localhost:4000/neuron-core/processor.html" class="navigation-list-link">Processor</a>
                       
                     </li>
+                  
+                
                   
                 
                   
@@ -344,12 +350,22 @@
     
       
         
+      
+    
+      
+        
+      
+    
+      
+        
           <li class="navigation-list-item">
             
             <a href="http://localhost:4000/neuron-gateway/" class="navigation-list-link">Gateway</a>
             
               
               <ul class="navigation-list-child-list ">
+                
+                  
                 
                   
                 
@@ -429,19 +445,19 @@
     
       
         
-      
-    
-      
-        
-      
-    
-      
-        
           <li class="navigation-list-item">
             
             <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
             
           </li>
+        
+      
+    
+      
+        
+      
+    
+      
         
       
     
@@ -526,11 +542,13 @@
 The main abstractions of the repositories are <a href="#factory">repository.Factory</a> and a <a href="#repository">repository.Repository</a>.</p>
 
 <h2 id="factory">Factory</h2>
+
 <p>The Factory is the abstraction used to create new repository instances.
 It is also responsible for keeping the instances and closing them.
 Each factory have a <strong>unique</strong> driver name, which is used by the repositories  configurations (<code class="highlighter-rouge">*config.Repository</code>) and by the <code class="highlighter-rouge">*controller.Controller</code> which is responsible to get the appropiate factory and create new repository instances for the models. The Factory should be registered within the <code class="highlighter-rouge">neuron-core</code> on package initialization.</p>
 
 <p>Custom factory skeleton may look like in the following example:</p>
+
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">myfactory</span><span class="x">
 
 </span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
@@ -581,6 +599,7 @@ Each factory have a <strong>unique</strong> driver name, which is used by the re
     </span><span class="n">done</span><span class="x"> </span><span class="o">&lt;-</span><span class="x"> </span><span class="k">struct</span><span class="p">{}</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre></div></div>
+
 <p>The <code class="highlighter-rouge">repository.Factory</code> is an interface used to create new instances of the <code class="highlighter-rouge">repository.Repository</code>. This interface requires to implement three methods:</p>
 
 <ul>
@@ -590,6 +609,7 @@ Each factory have a <strong>unique</strong> driver name, which is used by the re
 </ul>
 
 <h2 id="repository">Repository</h2>
+
 <p>The Repository is the abstraction used to get the access to the data/service. 
 It may be a used as the ORM access to the database, http.Client to some external service or just a custom accessability by using provided interfaces.
 The <code class="highlighter-rouge">repository.Repository</code> is the basic and required interface for the all the repository implementaions. The Repository instances should be created by it’s specific Factory. While registering the models, the controller stores the mapping between repositories and related models. All the Repository methods should not be used by the user directly.</p>
@@ -606,11 +626,13 @@ The <code class="highlighter-rouge">repository.Repository</code> is the basic an
 </ul>
 
 <h3 id="creator">Creator</h3>
+
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">Repository</span><span class="p">)</span><span class="x"> </span><span class="p">(</span><span class="n">ctx</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span><span class="x"> </span><span class="n">scope</span><span class="x"> </span><span class="o">*</span><span class="n">query</span><span class="o">.</span><span class="n">Scope</span><span class="p">)</span><span class="x"> </span><span class="kt">error</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="c">// Do the create logic here</span><span class="x">
     </span><span class="k">return</span><span class="x"> </span><span class="no">nil</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre></div></div>
+
 <p>The Create method of the Creator interface requires the Repository to create a specific model instance. For any connection or other relatively long processes the function should check if the ‘<em>ctx</em>’ context is not Done yet. Provided ‘<em>scope</em>’ structure contains multiple important information 
 about given query like:</p>
 
@@ -623,18 +645,22 @@ about given query like:</p>
 <p>Any error returned by this method should be an instance of <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/errors</code> <code class="highlighter-rouge">Error</code> or <code class="highlighter-rouge">MultiError</code> with defined error classification (``github.com/neuronlabs/neuron-core/errors/class`).</p>
 
 <h3 id="getter-and-lister">Getter and Lister</h3>
+
 <p><strong>Getter</strong></p>
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">Repository</span><span class="p">)</span><span class="x"> </span><span class="n">Get</span><span class="p">(</span><span class="n">ctx</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span><span class="x"> </span><span class="n">scope</span><span class="x"> </span><span class="o">*</span><span class="n">query</span><span class="o">.</span><span class="n">Scope</span><span class="p">)</span><span class="x"> </span><span class="kt">error</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="c">// Do the get logic here</span><span class="x">
     </span><span class="k">return</span><span class="x"> </span><span class="no">nil</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre></div></div>
+
 <p><strong>Lister</strong></p>
+
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">Repository</span><span class="p">)</span><span class="x"> </span><span class="n">List</span><span class="p">(</span><span class="n">ctx</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span><span class="x"> </span><span class="n">scope</span><span class="x"> </span><span class="o">*</span><span class="n">query</span><span class="o">.</span><span class="n">Scope</span><span class="p">)</span><span class="x"> </span><span class="kt">error</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="c">// Do the logic here</span><span class="x">
     </span><span class="k">return</span><span class="x"> </span><span class="no">nil</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre></div></div>
+
 <p>Both Get method from the Getter and List from the Lister interface should get a specific model instances for provided query ‘<em>scope</em>’. For any connection or other relatively long processes the function should check if the ‘<em>ctx</em>’ context is not Done yet. The get method must not return more than one value instance - (scope.Value is a pointer to the model struct). In order to narrow the scope of the query the <code class="highlighter-rouge">*query.Scope</code> contains multiple important information like:</p>
 
 <ul>
@@ -647,6 +673,7 @@ about given query like:</p>
 <p>Any error returned by this method should be an instance of <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/errors</code> <code class="highlighter-rouge">Error</code> or <code class="highlighter-rouge">MultiError</code> with defined error classification (``github.com/neuronlabs/neuron-core/errors/class`). If there no resultant value was found in related datastore/database then the repository should return an error with <em>no result</em> error classification.</p>
 
 <h3 id="patcher">Patcher</h3>
+
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">Repository</span><span class="p">)</span><span class="x"> </span><span class="n">Patch</span><span class="p">(</span><span class="n">ctx</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span><span class="x"> </span><span class="n">scope</span><span class="x"> </span><span class="o">*</span><span class="n">query</span><span class="o">.</span><span class="n">Scope</span><span class="p">)</span><span class="x"> </span><span class="kt">error</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="c">// Do the patch logic here</span><span class="x">
     </span><span class="k">return</span><span class="x"> </span><span class="no">nil</span><span class="x">
@@ -666,6 +693,7 @@ Useful parameters stored in the <em>scope</em>:</p>
 <p>Any error returned by this method should be an instance of <code class="highlighter-rouge">github.com/neuronlabs/neuron-core/errors</code> <code class="highlighter-rouge">Error</code> or <code class="highlighter-rouge">MultiError</code> with defined error classification (``github.com/neuronlabs/neuron-core/errors/class`). If there no resultant value was found in related datastore/database then the repository should return an error with <em>no result</em> error classification.</p>
 
 <h3 id="deleter">Deleter</h3>
+
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">Repository</span><span class="p">)</span><span class="x"> </span><span class="n">Delete</span><span class="p">(</span><span class="n">ctx</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span><span class="x"> </span><span class="n">scope</span><span class="x"> </span><span class="o">*</span><span class="n">query</span><span class="o">.</span><span class="n">Scope</span><span class="p">)</span><span class="x"> </span><span class="kt">error</span><span class="x"> </span><span class="p">{</span><span class="err">\</span><span class="x">
     </span><span class="c">// Do the delete logic.</span><span class="x">
     </span><span class="k">return</span><span class="x"> </span><span class="no">nil</span><span class="x">

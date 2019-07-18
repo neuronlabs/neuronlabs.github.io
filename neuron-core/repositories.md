@@ -1,6 +1,7 @@
 ---
 nav_order: 2
 parent: Core ORM
+title: Repositories
 ---
 # Repositories
 
@@ -8,11 +9,13 @@ Neuron-core use the repositories as the database/data store/service access.
 The main abstractions of the repositories are [repository.Factory](#factory) and a [repository.Repository](#repository).
 
 ## Factory
+
 The Factory is the abstraction used to create new repository instances.
 It is also responsible for keeping the instances and closing them.
 Each factory have a **unique** driver name, which is used by the repositories  configurations (`*config.Repository`) and by the `*controller.Controller` which is responsible to get the appropiate factory and create new repository instances for the models. The Factory should be registered within the `neuron-core` on package initialization.
 
 Custom factory skeleton may look like in the following example:
+
 ```go
 package myfactory
 
@@ -64,6 +67,7 @@ func (f *Factory) Close(ctx context.Context, done chan<-interface{}) {
     done <- struct{}
 }
 ```
+
 The `repository.Factory` is an interface used to create new instances of the `repository.Repository`. This interface requires to implement three methods:
 
 * `DriverName()` - which gets the **unique** driver name for the given factory.
@@ -71,6 +75,7 @@ The `repository.Factory` is an interface used to create new instances of the `re
 * `Close(context.Context, done chan<-interface{})` closes all the instances of the factory related repositories.
 
 ## Repository
+
 The Repository is the abstraction used to get the access to the data/service. 
 It may be a used as the ORM access to the database, http.Client to some external service or just a custom accessability by using provided interfaces.
 The `repository.Repository` is the basic and required interface for the all the repository implementaions. The Repository instances should be created by it's specific Factory. While registering the models, the controller stores the mapping between repositories and related models. All the Repository methods should not be used by the user directly.
@@ -86,12 +91,14 @@ In order to access the data or service the Repository may implement specific int
 
 
 ### Creator
+
 ```go
 func (r *Repository) (ctx context.Context, scope *query.Scope) error {
     // Do the create logic here
     return nil
 }
 ```
+
 The Create method of the Creator interface requires the Repository to create a specific model instance. For any connection or other relatively long processes the function should check if the '_ctx_' context is not Done yet. Provided '_scope_' structure contains multiple important information 
 about given query like:
 
@@ -102,6 +109,7 @@ about given query like:
 Any error returned by this method should be an instance of `github.com/neuronlabs/neuron-core/errors` `Error` or `MultiError` with defined error classification (``github.com/neuronlabs/neuron-core/errors/class`).
 
 ### Getter and Lister
+
 **Getter**
 ```go
 func (r *Repository) Get(ctx context.Context, scope *query.Scope) error {
@@ -109,13 +117,16 @@ func (r *Repository) Get(ctx context.Context, scope *query.Scope) error {
     return nil
 }
 ```
+
 **Lister**
+
 ```go
 func (r *Repository) List(ctx context.Context, scope *query.Scope) error {
     // Do the logic here
     return nil
 }
 ```
+
 Both Get method from the Getter and List from the Lister interface should get a specific model instances for provided query '_scope_'. For any connection or other relatively long processes the function should check if the '_ctx_' context is not Done yet. The get method must not return more than one value instance - (scope.Value is a pointer to the model struct). In order to narrow the scope of the query the `*query.Scope` contains multiple important information like: 
 
 * `PrimaryFilters()`, `AttributeFilters()`, `ForeignKeyFilters()`, `FilterKeyFilters()` - 'scope' methods used to get the specific field's filters. The Repository should not use the `RelationshipFilters()` as the query processor converts them into other filters.
@@ -126,6 +137,7 @@ Both Get method from the Getter and List from the Lister interface should get a 
 Any error returned by this method should be an instance of `github.com/neuronlabs/neuron-core/errors` `Error` or `MultiError` with defined error classification (``github.com/neuronlabs/neuron-core/errors/class`). If there no resultant value was found in related datastore/database then the repository should return an error with _no result_ error classification.
 
 ### Patcher
+
 ```go
 func (r *Repository) Patch(ctx context.Context, scope *query.Scope) error {
     // Do the patch logic here
@@ -144,6 +156,7 @@ Useful parameters stored in the _scope_:
 Any error returned by this method should be an instance of `github.com/neuronlabs/neuron-core/errors` `Error` or `MultiError` with defined error classification (``github.com/neuronlabs/neuron-core/errors/class`). If there no resultant value was found in related datastore/database then the repository should return an error with _no result_ error classification.
 
 ### Deleter
+
 ```go
 func (r *Repository) Delete(ctx context.Context, scope *query.Scope) error {\
     // Do the delete logic.

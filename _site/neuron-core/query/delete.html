@@ -77,10 +77,6 @@
     
       
         
-      
-    
-      
-        
           <li class="navigation-list-item active">
             
             <a href="http://localhost:4000/neuron-core" class="navigation-list-link">Core ORM</a>
@@ -146,6 +142,16 @@
                           
                             
                               <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/scope.html" class="navigation-list-link">Scope</a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/insert.html" class="navigation-list-link">Insert</a>
                               </li>
                             
@@ -175,11 +181,11 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/patch.html" class="navigation-list-link">Patch</a>
                               </li>
+                            
+                          
                             
                           
                             
@@ -199,12 +205,14 @@
                             
                           
                             
-                          
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/fieldset.html" class="navigation-list-link">Fieldset</a>
+                              </li>
                             
                           
                             
                               <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/query/fieldset.html" class="navigation-list-link">Fieldset</a>
+                                <a href="http://localhost:4000/neuron-core/query/selected_fields.html" class="navigation-list-link">Selected Fields</a>
                               </li>
                             
                           
@@ -217,12 +225,6 @@
                             
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/pagination.html" class="navigation-list-link">Pagination</a>
-                              </li>
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/query/selected_fields.html" class="navigation-list-link">Selected Fields</a>
                               </li>
                             
                           
@@ -311,6 +313,8 @@
                           
                             
                           
+                            
+                          
                         </ul>
                       
                     </li>
@@ -322,6 +326,8 @@
                       <a href="http://localhost:4000/neuron-core/processor.html" class="navigation-list-link">Processor</a>
                       
                     </li>
+                  
+                
                   
                 
                   
@@ -344,12 +350,22 @@
     
       
         
+      
+    
+      
+        
+      
+    
+      
+        
           <li class="navigation-list-item">
             
             <a href="http://localhost:4000/neuron-gateway/" class="navigation-list-link">Gateway</a>
             
               
               <ul class="navigation-list-child-list ">
+                
+                  
                 
                   
                 
@@ -429,19 +445,19 @@
     
       
         
-      
-    
-      
-        
-      
-    
-      
-        
           <li class="navigation-list-item">
             
             <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
             
           </li>
+        
+      
+    
+      
+        
+      
+    
+      
         
       
     
@@ -521,14 +537,63 @@
           
         
         <div id="main-content" class="page-content" role="main">
-          <h1 id="delete-method">Delete method</h1>
+          <h1 id="deleting-data">Deleting data</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Deleting the data instances is based on the query scope filters.</p>
+
+<p>Create new query scope for the model that would be deleted:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// we want to delete the users collection's instance with id: '4'</span><span class="x">
+</span><span class="n">u</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">User</span><span class="p">{</span><span class="n">ID</span><span class="o">:</span><span class="x"> </span><span class="m">4</span><span class="p">}</span><span class="x">
+
+</span><span class="c">// prepare the query scope</span><span class="x">
+</span><span class="n">s</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">norm</span><span class="o">.</span><span class="n">MustNew</span><span class="p">(</span><span class="o">&amp;</span><span class="n">u</span><span class="p">)</span><span class="x">
+</span></code></pre></div></div>
+
+<h2 id="filters">Filters</h2>
+
+<p>In order to delete the data model’s instance we need to provide query scope filters.</p>
+
+<p>If the model provided in the query creation method contains non-zero primary field value, the neuron <strong>processor</strong> sets it’s value to scope’s primary filter.</p>
+
+<h2 id="deleting-methods">Deleting Methods</h2>
+
+<p>When the query scope is ready for deleting, use the query Scope’s methods:
+<code class="highlighter-rouge">Delete</code> or <code class="highlighter-rouge">DeleteContext</code> if the query should be based on the ‘context.Context’.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Delete</span><span class="p">()</span><span class="x">
+</span><span class="k">if</span><span class="x">  </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> 
+    </span><span class="c">// a different logic may be provided for specified error.</span><span class="x">
+    </span><span class="c">// If no values were deleted the processor returns errors with class</span><span class="x">
+    </span><span class="c">// QueryValueNoResult.</span><span class="x">
+    </span><span class="k">if</span><span class="x">  </span><span class="o">!</span><span class="n">errors</span><span class="o">.</span><span class="n">IsNoResult</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">    
+        </span><span class="k">return</span><span class="x"> </span><span class="n">err</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<h2 id="relations">Relations</h2>
+
+<p>While deleting current data instance the processor clears also related relationship foreign keys.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In future versions of the Core ORM each relationship would have it's change strategy. The strategy would differ the processes on data deletion, depending on the user's choice.
+</code></pre></div></div>
+
+<h3 id="belongsto">BelongsTo</h3>
+
+<p>In <code class="highlighter-rouge">BelongsTo</code> relationship the root model contains a <strong>foreign</strong> key which would be deleted with the model indstance.</p>
+
+<h3 id="hasone">HasOne</h3>
+
+<p>The models with <code class="highlighter-rouge">HasOne</code> relationships would have related model’s foreign keys deleted.</p>
+
+<h3 id="hasmany">HasMany</h3>
+
+<p>The models with <code class="highlighter-rouge">HasMany</code> relationships would have related model’s foreign keys deleted.</p>
+
+<h3 id="manytomany">ManyToMany</h3>
+
+<p>The models with <code class="highlighter-rouge">Many2Many</code> relationships would have related model’s foreign keys deleted from the <strong>join model</strong>.</p>
 
 
 
