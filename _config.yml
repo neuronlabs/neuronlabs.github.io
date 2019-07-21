@@ -1,14 +1,14 @@
 aux_links:
   "Neuron Project": 
-    - "https://neuronlabs.github.io"
+    - "https://github.com/neuronlabs"
   "Core": 
-    - "https://neuronlabs.github.io/neuron-core"
+    - "https://github.com/neuronlabs/neuron-core"
   "Gateway": 
-    - "https://neuronlabs.github.io/neuron-gateway"
+    - "https://github.com/neuronlabs/neuron-gateway"
   "PQ Repository":
-    - "https://neuronlabs.github.io/neuron-pq"
+    - "https://github.com/neuronlabs/neuron-pq"
   "Mongo Repository":
-    - "https://neuronlabs.github.io/neuron-mongo"
+    - "https://github.com/neuronlabs/neuron-mongo"
 plugins:
   - jekyll-relative-links
 markdown: kramdown
