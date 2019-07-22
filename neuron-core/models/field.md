@@ -13,12 +13,12 @@ A `*mapping.StructField` is the mapped model's field. It contains neuron informa
 * Neuron Name - is the field's name converted using controller's defined `NamerFunc`.
 * Name - the structField's Name.
 * FieldKind - is the neuron kind of the field: 
-    - Primary Key
-    - Foreign Key
-    - Attribute
-    - RelationshipSingle
-    - RelationshipMultiple
-    - Filter Key
+    - Primary Key - the primary key field of the model
+    - Foreign Key - the foreign key field for the model's relationship
+    - Attribute - an attribute of the model
+    - RelationshipSingle - single value relationship field
+    - RelationshipMultiple - multiple value relationship field
+    - Filter Key - a key value used to change the hooks
     - Nested - for the nested attributes
 * Nested - nested structure for the nested field types.
 * [Relationship](#relationship) - relationship contains information about the field's relation to another model.

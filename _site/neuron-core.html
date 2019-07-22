@@ -290,8 +290,6 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/delete.html" class="navigation-list-link">Delete</a>
                               </li>
@@ -331,6 +329,12 @@
                               </li>
                             
                           
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/transactions.html" class="navigation-list-link">Transactions</a>
+                              </li>
+                            
+                          
                         </ul>
                       
                     </li>
@@ -340,14 +344,6 @@
                 
                   
                 
-                  
-                
-                  
-                    <li class="navigation-list-item ">
-                      
-                      <a href="http://localhost:4000/neuron-core/transactions.html" class="navigation-list-link">Transactions</a>
-                      
-                    </li>
                   
                 
                   
@@ -437,6 +433,8 @@
                       <a href="http://localhost:4000/neuron-core/processor.html" class="navigation-list-link">Processor</a>
                       
                     </li>
+                  
+                
                   
                 
                   
@@ -635,15 +633,15 @@
           
             <ul class="list-style-none text-small mt-md-1 mb-md-1 pb-4 pb-md-0 js-aux-nav aux-nav">
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io">Neuron Project</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs">Neuron Project</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-core">Core</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-core">Core</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-gateway">Gateway</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-gateway">Gateway</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-pq">PQ Repository</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-pq">PQ Repository</a></li>
               
-                <li class="d-inline-block my-0"><a href="https://neuronlabs.github.io/neuron-mongo">Mongo Repository</a></li>
+                <li class="d-inline-block my-0"><a href="https://github.com/neuronlabs/neuron-mongo">Mongo Repository</a></li>
               
             </ul>
           
@@ -665,9 +663,9 @@
 <ul>
   <li><a href="#what-is-neuron-core">What is Neuron Core?</a></li>
   <li><a href="#install">Install</a></li>
-  <li><a href="#quickstart">Quickstart</a></li>
-  <li><a href="#design">Design</a></li>
+  <li><a href="#quick-start">Quickstart</a></li>
   <li><a href="#packages">Packages</a></li>
+  <li><a href="#design">Design</a></li>
 </ul>
 
 <h2 id="what-is-neuron-core">What is Neuron Core?</h2>
@@ -818,6 +816,15 @@ query multiple related models located on different datastores/repositories.</p>
   <li><code class="highlighter-rouge">common</code> - common neuron variables, functions and definitions.</li>
 </ul>
 
+<h2 id="design">Design</h2>
+
+<p>The neuron-core is golang ORM implementation designed to process microservice repositories. This concept enhanced the requirements for the models mapping and query processor.</p>
+
+<p>The mapped models must have all the field’s with <a href="/neuron-core/models/structure.html#model-structure">defined type</a>. The initial model mapping was based on the <a href="https://jsonapi.org/format/#document-resource-objects">JSONAPI v1.0</a> model definition. The distributed environment required each <a href="/neuron-core/models/relationship.html">relationship</a> to be specified of it’s kind and type, just as their foreign keys.</p>
+
+<p>The query processor needs to work as the orchestrator, choreographer. As each model’s repository might use different database, it needs to implement distributed <a href="/neuron-core/query/transactions.html">transactions</a>.</p>
+
+
 
 
           
@@ -889,12 +896,6 @@ query multiple related models located on different datastores/repositories.</p>
               
             
               
-              <li>
-                <a href="http://localhost:4000/neuron-core/transactions.html">Transactions</a>
-              </li>
-              
-            
-              
             
               
               <li>
@@ -906,6 +907,8 @@ query multiple related models located on different datastores/repositories.</p>
               <li>
                 <a href="http://localhost:4000/neuron-core/processor.html">Processor</a>
               </li>
+              
+            
               
             
               

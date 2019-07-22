@@ -11,6 +11,6 @@ top quality, cloud-native, microservice ready framework for building and creatin
 
 
 ## Core 
-* [Core](https://neuronlabs.github.io/neuron-core)
-* [Query](https://neuronlabs.github.io/neuron-gateway)
-* [Repositories](./repositories.md)
+* [Core](/neuron-core)
+* [Gateway](/neuron-gateway)
+* [Postgres Repository](/neuron-pq)

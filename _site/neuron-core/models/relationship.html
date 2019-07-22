@@ -290,8 +290,6 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/delete.html" class="navigation-list-link">Delete</a>
                               </li>
@@ -331,6 +329,12 @@
                               </li>
                             
                           
+                            
+                              <li class="navigation-list-item ">
+                                <a href="http://localhost:4000/neuron-core/query/transactions.html" class="navigation-list-link">Transactions</a>
+                              </li>
+                            
+                          
                         </ul>
                       
                     </li>
@@ -340,14 +344,6 @@
                 
                   
                 
-                  
-                
-                  
-                    <li class="navigation-list-item ">
-                      
-                      <a href="http://localhost:4000/neuron-core/transactions.html" class="navigation-list-link">Transactions</a>
-                      
-                    </li>
                   
                 
                   
@@ -437,6 +433,8 @@
                       <a href="http://localhost:4000/neuron-core/processor.html" class="navigation-list-link">Processor</a>
                       
                     </li>
+                  
+                
                   
                 
                   
@@ -635,15 +633,15 @@
           
             <ul class="list-style-none text-small mt-md-1 mb-md-1 pb-4 pb-md-0 js-aux-nav aux-nav">
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io">Neuron Project</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs">Neuron Project</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-core">Core</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-core">Core</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-gateway">Gateway</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-gateway">Gateway</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-pq">PQ Repository</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-pq">PQ Repository</a></li>
               
-                <li class="d-inline-block my-0"><a href="https://neuronlabs.github.io/neuron-mongo">Mongo Repository</a></li>
+                <li class="d-inline-block my-0"><a href="https://github.com/neuronlabs/neuron-mongo">Mongo Repository</a></li>
               
             </ul>
           
@@ -680,6 +678,212 @@ It defines information such that:</p>
 <!--
 TODO: Add relationship types documentation.
 -->
+
+<h2 id="relationship-kinds">Relationship kinds</h2>
+
+<p>The relationship type might differ a lot in their structure and value number. Neuron specifies 4 main relationship kinds:</p>
+<ul>
+  <li><a href="#belongs-to">Belongs to</a></li>
+  <li><a href="#has-one">Has one</a></li>
+  <li><a href="#has-many">Has many</a></li>
+  <li><a href="#many-to-many">Many to many</a></li>
+</ul>
+
+<h3 id="belongs-to">Belongs to</h3>
+
+<p>The <code class="highlighter-rouge">Belongs to</code> relationship defines the single value relationship where it’s <code class="highlighter-rouge">Foreign Key</code> is stored within the root model.</p>
+
+<p>Example:</p>
+
+<p>Let’s define the root model with the belong’s to relationship:</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">User</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">          </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Name</span><span class="x">        </span><span class="kt">string</span><span class="x">
+    </span><span class="n">FavoritePet</span><span class="x"> </span><span class="o">*</span><span class="n">Pet</span><span class="x">
+    </span><span class="n">PetID</span><span class="x">       </span><span class="kt">int</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>And the related model:</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Pet</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">   </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Name</span><span class="x"> </span><span class="kt">string</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>The example <code class="highlighter-rouge">User</code> model contains <code class="highlighter-rouge">BelongsTo</code> relationship field with name <code class="highlighter-rouge">FavoritePet</code> and foreign key: <code class="highlighter-rouge">PetID</code>.</p>
+
+<h4 id="foreign-key-naming-convention">Foreign key naming convention</h4>
+<p>The default relationship foreign key naming conventions specify that the foreign key name should be:</p>
+<ul>
+  <li>relationship’s struct field name + ID - example: <code class="highlighter-rouge">FavoritePetID</code></li>
+  <li>relationship’s struct name + ID - example: <code class="highlighter-rouge">PetID</code></li>
+</ul>
+
+<p>If the other name is required for the model naming use the <code class="highlighter-rouge">foreign</code> tag with specified name on the relationship that uses this foreign key field.</p>
+
+<p>If the model or related model contains multiple fields with the matched foreig n key name the mapper prioritizes them as follows:</p>
+
+<ul>
+  <li>Custom foreign key name (<code class="highlighter-rouge">CustomForeignID</code>)</li>
+  <li>Relationships struct field name (<code class="highlighter-rouge">FavoritePetID</code>)</li>
+  <li>Relationships struct name (<code class="highlighter-rouge">PetID</code>)</li>
+</ul>
+
+<h3 id="has-one">Has one</h3>
+
+<p>The <code class="highlighter-rouge">HasOne</code> relationship defines the single value relationship where the <strong>related model</strong> contains the <code class="highlighter-rouge">Foreign Key</code>.</p>
+
+<p>This relationship searches for the foreign key named from the model that contains relationship field instead of the foreign model (as in the <code class="highlighter-rouge">BelongsTo</code> relationship).</p>
+
+<p>Example:</p>
+
+<p>Define the model with <code class="highlighter-rouge">HasOne</code> relationship field:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Pet</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">    </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Name</span><span class="x">  </span><span class="kt">string</span><span class="x">
+    </span><span class="n">Owner</span><span class="x"> </span><span class="o">*</span><span class="n">User</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>Define the related model with the foreign key - this is the name of the related model with ID (as in the <code class="highlighter-rouge">BelongsTo</code> relationship) :</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">User</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">          </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Name</span><span class="x">        </span><span class="kt">string</span><span class="x">
+    </span><span class="n">FavoritePet</span><span class="x"> </span><span class="o">*</span><span class="n">Pet</span><span class="x">
+    </span><span class="n">PetID</span><span class="x">       </span><span class="kt">int</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>The example <code class="highlighter-rouge">Pet</code> model contains the <code class="highlighter-rouge">HasOne</code> relationship field <code class="highlighter-rouge">Owner</code> which has it’s foreign key in the <code class="highlighter-rouge">User</code> model under the name <code class="highlighter-rouge">PetID</code>.</p>
+
+<h3 id="has-many">Has Many</h3>
+
+<p>The <code class="highlighter-rouge">HasMany</code> defines the <code class="highlighter-rouge">many to one</code> relationship between the models where the <code class="highlighter-rouge">Foreign Keys</code> are stored in the <strong>related models</strong>.</p>
+
+<p>This relationship searches for the foreign key named from the model that contains relationship field instead of the foreign model (as in the <code class="highlighter-rouge">BelongsTo</code> relationship).</p>
+
+<p>Example:</p>
+
+<p>Define the model with foreign key:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Human</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">      </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Name</span><span class="x">    </span><span class="kt">string</span><span class="x">
+    </span><span class="n">Surname</span><span class="x"> </span><span class="kt">string</span><span class="x">
+    </span><span class="c">// HouseID is the foreign key of the House.Owners has many relationship</span><span class="x">
+    </span><span class="n">HouseID</span><span class="x"> </span><span class="kt">int</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>Define the model with the <code class="highlighter-rouge">HasMany</code> relationship field:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">House</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">      </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Address</span><span class="x"> </span><span class="kt">string</span><span class="x">
+    </span><span class="c">// Owners is the has many relationship field with the foreign key</span><span class="x">
+    </span><span class="c">// stored in the Human model (HouseID)</span><span class="x">
+    </span><span class="n">Owners</span><span class="x">  </span><span class="p">[]</span><span class="o">*</span><span class="n">Human</span><span class="x"> 
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>The example above defines two models:</p>
+<ul>
+  <li>Human which contains ID, some attributes and a <code class="highlighter-rouge">HouseID</code> foreign key.</li>
+  <li>House which contains ID, address attribute and the <code class="highlighter-rouge">Owners</code> <code class="highlighter-rouge">HasMany</code> relationship. The controller searches for the foreign key of names: <code class="highlighter-rouge">OwnerID</code> or <code class="highlighter-rouge">HouseID</code>. The second is found within the <code class="highlighter-rouge">Human</code> model.</li>
+</ul>
+
+<p>This relation can be paired with the opposite BelongsTo relationship, where the example <code class="highlighter-rouge">House</code> model has some <code class="highlighter-rouge">BelongsTo</code> relaitonship field to the <code class="highlighter-rouge">House</code>.</p>
+
+<h3 id="many-to-many">Many to many</h3>
+
+<p>The <code class="highlighter-rouge">ManyToMany</code> model is the most advance relationship type. It requires three models to involved:</p>
+
+<ul>
+  <li>Model with relationship</li>
+  <li>Related model</li>
+  <li>Join model containing foreign keys</li>
+</ul>
+
+<p>By default the join model’s name should be a concantenation of the relationship models where the second is in plural form. In order to change it’s default name set the subtag with its name under the <code class="highlighter-rouge">many2many</code> tag.</p>
+
+<p>Example:</p>
+
+<p>Define model with relationship:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Class</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">          </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Title</span><span class="x">       </span><span class="kt">string</span><span class="x">
+    </span><span class="n">Students</span><span class="x">    </span><span class="p">[]</span><span class="o">*</span><span class="n">Student</span><span class="x"> </span><span class="s">`neuron:"many2many"`</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>The root model has the <code class="highlighter-rouge">Students</code> relationship field. It must be tagged with the <code class="highlighter-rouge">many2many</code> struct field tag.</p>
+
+<p>Define the related model:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Student</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">      </span><span class="kt">int</span><span class="x"> 
+    </span><span class="n">Name</span><span class="x">    </span><span class="kt">string</span><span class="x">
+    </span><span class="c">// Classes is the many2many relationship field</span><span class="x">
+    </span><span class="c">// As the backreference field, it is not required to exists.</span><span class="x">
+    </span><span class="n">Classes</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">Class</span><span class="x"> </span><span class="s">`neuron:"many2many"`</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>The backreference field in the related model is not required. If it exists it must be tagged with the <code class="highlighter-rouge">many2many</code> struct field tag.</p>
+
+<p>Define the join model:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">ClassStudents</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">          </span><span class="kt">int</span><span class="x"> 
+    </span><span class="n">StudentID</span><span class="x">   </span><span class="kt">int</span><span class="x"> 
+    </span><span class="n">ClassID</span><span class="x">     </span><span class="kt">int</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>The join model may have attributes and other relationship fields (i.e.:<code class="highlighter-rouge">BelongsTo</code> relationships to the <code class="highlighter-rouge">Class</code> or <code class="highlighter-rouge">Student</code>)</p>
+
+<p>The above example shows how the three models could be defined for the <code class="highlighter-rouge">ManyToMany</code> relationship.</p>
+
+<p>The <code class="highlighter-rouge">foreign</code> struct field tag in the <code class="highlighter-rouge">ManyToMany</code> relationship may accept a subtag that defines custom join model name. In order to customize the foreign key names use <code class="highlighter-rouge">foreign</code> tag with two subtags as follows:</p>
+
+<p>The root model has the <code class="highlighter-rouge">Students</code> relationship field. It must be tagged with the <code class="highlighter-rouge">foreign</code>, and it’s custom foreign key name should be stored as the subtag.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Class</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">          </span><span class="kt">int</span><span class="x">
+    </span><span class="n">Title</span><span class="x">       </span><span class="kt">string</span><span class="x">
+    </span><span class="c">// Students many2many relationship field has both custom join model</span><span class="x">
+    </span><span class="c">// and custom foreign key name.</span><span class="x">
+    </span><span class="n">Students</span><span class="x">    </span><span class="p">[]</span><span class="o">*</span><span class="n">Student</span><span class="x"> </span><span class="s">`neuron:"many2many=CustomJoin;foreign=CustomClassID"`</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>The backreference field in the related model is not required. If the related model’s foreign key have custom name it must be shown as the second subtag name in the <code class="highlighter-rouge">foreign</code> tag. If no custom foreign key name is used for this model but it is used for the related model use the <code class="highlighter-rouge">_</code> subtag to separate the names.
+Define the related model:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Student</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">      </span><span class="kt">int</span><span class="x"> 
+    </span><span class="n">Name</span><span class="x">    </span><span class="kt">string</span><span class="x">
+    </span><span class="c">// Classes many2many relationship field has both custom join model and </span><span class="x">
+    </span><span class="c">// custom related models foreign key name.</span><span class="x">
+    </span><span class="n">Classes</span><span class="x"> </span><span class="p">[]</span><span class="o">*</span><span class="n">Class</span><span class="x"> </span><span class="s">`neuron:"many2many=CustomJoin;foreign=_,CustomClassID"`</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<p>This join model has custom name different than default convention. It must be set in the <code class="highlighter-rouge">many2many</code> tag of the <code class="highlighter-rouge">ManyToMany</code> relationship fields.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">CustomJoin</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">ID</span><span class="x">              </span><span class="kt">int</span><span class="x">
+    </span><span class="c">// StudentID is the foreign key with default name. </span><span class="x">
+    </span><span class="n">StudentID</span><span class="x">       </span><span class="kt">int</span><span class="x">
+    </span><span class="c">// CustomClassID is the foreign key with custom - non default - name.</span><span class="x">
+    </span><span class="n">CustomClassID</span><span class="x">   </span><span class="kt">int</span><span class="x"> 
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
 
 
 

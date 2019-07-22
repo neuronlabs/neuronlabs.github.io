@@ -29,11 +29,11 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Neuronlabs Pages repository" />
 <meta property="og:description" content="Neuronlabs Pages repository" />
-<link rel="canonical" href="http://localhost:4000/neuron-core/transactions.html" />
-<meta property="og:url" content="http://localhost:4000/neuron-core/transactions.html" />
+<link rel="canonical" href="http://localhost:4000/neuron-core/query/transactions.html" />
+<meta property="og:url" content="http://localhost:4000/neuron-core/query/transactions.html" />
 <meta property="og:site_name" content="neuronlabs.github.io" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Transactions","url":"http://localhost:4000/neuron-core/transactions.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
+{"@type":"WebPage","headline":"Transactions","url":"http://localhost:4000/neuron-core/query/transactions.html","description":"Neuronlabs Pages repository","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -222,7 +222,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="http://localhost:4000/neuron-core/query/" class="navigation-list-link">Query</a>
                       
@@ -290,8 +290,6 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/query/delete.html" class="navigation-list-link">Delete</a>
                               </li>
@@ -331,6 +329,12 @@
                               </li>
                             
                           
+                            
+                              <li class="navigation-list-item  active">
+                                <a href="http://localhost:4000/neuron-core/query/transactions.html" class="navigation-list-link active">Transactions</a>
+                              </li>
+                            
+                          
                         </ul>
                       
                     </li>
@@ -340,14 +344,6 @@
                 
                   
                 
-                  
-                
-                  
-                    <li class="navigation-list-item  active">
-                      
-                      <a href="http://localhost:4000/neuron-core/transactions.html" class="navigation-list-link active">Transactions</a>
-                      
-                    </li>
                   
                 
                   
@@ -437,6 +433,8 @@
                       <a href="http://localhost:4000/neuron-core/processor.html" class="navigation-list-link">Processor</a>
                       
                     </li>
+                  
+                
                   
                 
                   
@@ -635,15 +633,15 @@
           
             <ul class="list-style-none text-small mt-md-1 mb-md-1 pb-4 pb-md-0 js-aux-nav aux-nav">
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io">Neuron Project</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs">Neuron Project</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-core">Core</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-core">Core</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-gateway">Gateway</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-gateway">Gateway</a></li>
               
-                <li class="d-inline-block my-0 mr-2"><a href="https://neuronlabs.github.io/neuron-pq">PQ Repository</a></li>
+                <li class="d-inline-block my-0 mr-2"><a href="https://github.com/neuronlabs/neuron-pq">PQ Repository</a></li>
               
-                <li class="d-inline-block my-0"><a href="https://neuronlabs.github.io/neuron-mongo">Mongo Repository</a></li>
+                <li class="d-inline-block my-0"><a href="https://github.com/neuronlabs/neuron-mongo">Mongo Repository</a></li>
               
             </ul>
           
@@ -656,6 +654,7 @@
               <ol class="breadcrumb-nav-list">
                 
                   <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core">Core ORM</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/neuron-core/query/">Query</a></li>
                 
                 <li class="breadcrumb-nav-list-item"><span>Transactions</span></li>
               </ol>
@@ -665,45 +664,37 @@
         <div id="main-content" class="page-content" role="main">
           <h1 id="transactions">Transactions</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Neuron core is a cloud ready query processor. It’s design uses <a href="https://microservices.io/patterns/data/saga.html">SAGA</a> like transactions in the queries. This concept allows to safe queries along multiple repositories.</p>
+
+<p>Neuron query Scope implements a concept like scope chain. The chain is an array of queries (query.Scope) in an order at which it was executed.
+If the root scope uses a transaction, before processing a subscope creates a new transaction and adds itself to the root scope’s - scope chain.
+On success all scopes stored in the Scope chain sends Commit method, whereas on any failure a Rollback method would be called. The order of these calls is reverse to their position in the slice.</p>
+
+<p>Each repository keeps it’s own transaction abstraction. This concept allows to not use a <a href="https://en.wikipedia.org/wiki/Two-phase_commit_protocol">Two-phase commit</a>. Each repository focuses on its own local atomic transaction and other repositories are not blocked if a repository is running for a long time.</p>
 
 <ul>
   <li><a href="#begin">Begin</a></li>
   <li><a href="#commit">Commit</a></li>
   <li><a href="#rollback">Rollback</a></li>
+  <li><a href="#subscopes">Subscopes</a></li>
 </ul>
 
 <h2 id="begin">Begin</h2>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p><code class="highlighter-rouge">Begin</code> is the a method of the <code class="highlighter-rouge">query.Transactioner</code> interface that begins a transaction for given query.</p>
 
 <h2 id="commit">Commit</h2>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p><code class="highlighter-rouge">Commit</code> sends approvement of transaction changes to the repository. Implements <code class="highlighter-rouge">query.Transactioner</code> interface.</p>
 
 <h2 id="rollback">Rollback</h2>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p><code class="highlighter-rouge">Rollback</code> rolls back the changes of the given transaction. It is used on transaction failures. Implements <code class="highlighter-rouge">query.Transactioner</code> interface.</p>
+
+<h2 id="subscopes">Subscopes</h2>
+
+<p>In order to create a new subscope for given query.Scope use it’s <code class="highlighter-rouge">New</code> method.
+It creates a new scope for the provided model. The subscope is added to the root scope chain.</p>
 
 
 

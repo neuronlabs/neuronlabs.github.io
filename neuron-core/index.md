@@ -15,9 +15,9 @@ Neuron-core is the golang cloud-native, distributed **ORM** implementation.
 
 * [What is Neuron Core?](#what-is-neuron-core)
 * [Install](#install)
-* [Quickstart](#quickstart)
-* [Design](#design)
+* [Quickstart](#quick-start)
 * [Packages](#packages)
+* [Design](#design)
 
 
 ## What is Neuron Core?
@@ -160,3 +160,12 @@ The `neuron-core` is composed of the following packages:
 * `log` - is the logging interface for the neuron based applications.
 * `i18n` - is the neuron based application supported internationalization
 * `common` - common neuron variables, functions and definitions.
+
+## Design
+
+The neuron-core is golang ORM implementation designed to process microservice repositories. This concept enhanced the requirements for the models mapping and query processor.
+
+The mapped models must have all the field's with [defined type](/neuron-core/models/structure.html#model-structure). The initial model mapping was based on the [JSONAPI v1.0](https://jsonapi.org/format/#document-resource-objects) model definition. The distributed environment required each [relationship](/neuron-core/models/relationship.html) to be specified of it's kind and type, just as their foreign keys.
+
+The query processor needs to work as the orchestrator, choreographer. As each model's repository might use different database, it needs to implement distributed [transactions](/neuron-core/query/transactions.html). 
+
