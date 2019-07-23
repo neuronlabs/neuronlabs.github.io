@@ -21,12 +21,12 @@ The package `encoding/jsonapi` uses fieldset in `MarshalScope` functions. It def
 
 The `*query.Scope` provide following methods for the access to the fieldset:
 
-### AddToFieldset
+### SetFields
 
 Adds 'fields' to the fieldset of the scope. Each field might be a string struct field **Name**,  **Neuron Name** or a __*mapping.StructField__.
 Returns error if the field is not found within the query scope root model.
 ```go
-err := scope.AddToSelectedFields("Name", "custom_neuron_name")
+err := scope.SetFields("Name", "custom_neuron_name")
 ```
 
 ### List Fieldset

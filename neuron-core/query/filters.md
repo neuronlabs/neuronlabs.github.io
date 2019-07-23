@@ -44,17 +44,15 @@ i.e. in order to filter the **_cars_** collection over it's relationship field *
 filter[cars][driver][name][$eq]=Mark
 ```
 
-In order to add the filter to the given scope use the `AddStringFilter` method to the query.Scope:
+In order to add the filter to the given scope use the `Filter` method to the query.Scope:
 
 ```go
-if err = s.AddStringFilter("filter[cars][driver][name][$eq]", "Mark"); err != nil {
+if err = s.Filter("filter[cars][driver][name][$eq]", "Mark"); err != nil {
     // error occurs if the field doesn't exists
-    panic(err)
 }
 
 ```
 
-If the query filter is on the different collection use the `filters.NewStringFilter()` method
 
 ## FilterField
 
@@ -95,7 +93,7 @@ if !ok {
 ```go
 // import "github.com/neuronlabs/neuron/query/filters"
 
-err = s.AddFilter(filters.NewFilter(doorField, filters.OpGreaterEqual, 4))
+err = s.FilterField(filters.NewFilter(doorField, filters.OpGreaterEqual, 4))
 if err != nil {
     // the error might occur if the field is not found within the model's 
     // struct field

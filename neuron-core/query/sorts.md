@@ -15,7 +15,7 @@ NOTE: Current implementation allows sorting by the fields of the query scope's r
 
 By default scope sorts by the primary field values in ascending order.
 
-In order to sort the results by other fields, `SortBy` scope method should be used.
+In order to sort the results by other fields, use the scope's `Sort` method.
 
 The function takes multiple string 'fields' as an arguments. By default each sort field would be in `ascending` order. In order to change it into `descending` order the `-` sign should be used before given 'field'.
 
@@ -24,7 +24,7 @@ Example:
 ```go
 // Sort the scope's result by the name, and if that matches sort by the age in 
 // desceding order.
-err = scope.SortBy("name", "-age")
+err = scope.Sort("name", "-age")
 ```
 
 This would result in sorting the results by the `name`. In case multiple fields would match, these would be sorted by the `age` in desceding order.

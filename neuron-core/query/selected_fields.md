@@ -74,14 +74,25 @@ err = scope.SelectField("custom_names")
 
 ### SelectFields 
 
-Works adds multiple fields to the query scope's selected fields.
-The `field` might be a string struct field **Name**,  **Neuron Name** or a __*mapping.StructField__.
+Clears the selected fields container for given query.Scope and adds argumented 'fields'. Each field might be a string struct field **Name**,  **Neuron Name** or a __*mapping.StructField__.
 
 ```go
 // Each field may be of different type
 phoneNumber, _ := scope.Struct().FieldByName("PhoneNumber")
 err = scope.SelectFields("Age", "custom_names", phoneNumber)
 ```
+
+### AppendSelectedFields
+
+Appends provided fields to the selected fields container for given query.Scope.
+Each field might be a string struct field **Name**,  **Neuron Name** or a __*mapping.StructField__.
+
+```go
+// Each field may be of different type
+phoneNumber, _ := scope.Struct().FieldByName("PhoneNumber")
+err = scope.AppendSelectedFields("Age", "custom_names", phoneNumber)
+```
+
 
 ### SelectedFields
 
