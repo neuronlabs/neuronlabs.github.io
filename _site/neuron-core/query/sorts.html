@@ -93,13 +93,13 @@
               <ul class="navigation-list-child-list ">
                 
                   
+                
+                  
                     <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/controller.html" class="navigation-list-link">Controller</a>
                       
                     </li>
-                  
-                
                   
                 
                   
@@ -169,8 +169,6 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/models/relationship.html" class="navigation-list-link">Relationships</a>
                               </li>
@@ -208,11 +206,11 @@
                           
                             
                           
+                            
+                          
                         </ul>
                       
                     </li>
-                  
-                
                   
                 
                   
@@ -349,82 +347,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
-                      
-                      <a href="http://localhost:4000/neuron-core/errors/" class="navigation-list-link">Errors</a>
-                      
-                        
-                        <ul class="navigation-list-child-list">
-                          
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/errors/error_struct.html" class="navigation-list-link">Error Struct</a>
-                              </li>
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/errors/class.html" class="navigation-list-link">Class</a>
-                              </li>
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                        </ul>
-                      
-                    </li>
+                
                   
                 
                   
@@ -458,6 +381,135 @@
       
     
       
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/errors" class="navigation-list-link">Errors</a>
+            
+              
+              <ul class="navigation-list-child-list ">
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="http://localhost:4000/errors/class.html" class="navigation-list-link">Class</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="http://localhost:4000/errors/errors.html" class="navigation-list-link">Error Interfaces and Structs</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
+            
+          </li>
         
       
     
@@ -544,54 +596,6 @@
     
       
         
-          <li class="navigation-list-item">
-            
-            <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
-            
-          </li>
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <li class="navigation-list-item">
-            
-            <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
-            
-          </li>
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
       
     
       
@@ -673,7 +677,7 @@
 
 <p>By default scope sorts by the primary field values in ascending order.</p>
 
-<p>In order to sort the results by other fields, <code class="highlighter-rouge">SortBy</code> scope method should be used.</p>
+<p>In order to sort the results by other fields, use the scope’s <code class="highlighter-rouge">Sort</code> method.</p>
 
 <p>The function takes multiple string ‘fields’ as an arguments. By default each sort field would be in <code class="highlighter-rouge">ascending</code> order. In order to change it into <code class="highlighter-rouge">descending</code> order the <code class="highlighter-rouge">-</code> sign should be used before given ‘field’.</p>
 
@@ -681,7 +685,7 @@
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Sort the scope's result by the name, and if that matches sort by the age in </span><span class="x">
 </span><span class="c">// desceding order.</span><span class="x">
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">scope</span><span class="o">.</span><span class="n">SortBy</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span><span class="x"> </span><span class="s">"-age"</span><span class="p">)</span><span class="x">
+</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">scope</span><span class="o">.</span><span class="n">Sort</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span><span class="x"> </span><span class="s">"-age"</span><span class="p">)</span><span class="x">
 </span></code></pre></div></div>
 
 <p>This would result in sorting the results by the <code class="highlighter-rouge">name</code>. In case multiple fields would match, these would be sorted by the <code class="highlighter-rouge">age</code> in desceding order.</p>

@@ -93,13 +93,13 @@
               <ul class="navigation-list-child-list ">
                 
                   
+                
+                  
                     <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/controller.html" class="navigation-list-link">Controller</a>
                       
                     </li>
-                  
-                
                   
                 
                   
@@ -169,8 +169,6 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/models/relationship.html" class="navigation-list-link">Relationships</a>
                               </li>
@@ -208,11 +206,11 @@
                           
                             
                           
+                            
+                          
                         </ul>
                       
                     </li>
-                  
-                
                   
                 
                   
@@ -349,82 +347,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
-                      
-                      <a href="http://localhost:4000/neuron-core/errors/" class="navigation-list-link">Errors</a>
-                      
-                        
-                        <ul class="navigation-list-child-list">
-                          
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/errors/error_struct.html" class="navigation-list-link">Error Struct</a>
-                              </li>
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/errors/class.html" class="navigation-list-link">Class</a>
-                              </li>
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                        </ul>
-                      
-                    </li>
+                
                   
                 
                   
@@ -458,6 +381,135 @@
       
     
       
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/errors" class="navigation-list-link">Errors</a>
+            
+              
+              <ul class="navigation-list-child-list ">
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="http://localhost:4000/errors/class.html" class="navigation-list-link">Class</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="http://localhost:4000/errors/errors.html" class="navigation-list-link">Error Interfaces and Structs</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
+            
+          </li>
         
       
     
@@ -539,54 +591,6 @@
               </ul>
             
           </li>
-        
-      
-    
-      
-        
-          <li class="navigation-list-item">
-            
-            <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
-            
-          </li>
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <li class="navigation-list-item">
-            
-            <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
-            
-          </li>
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
         
       
     
@@ -701,16 +705,13 @@ filter[collection][relationship-field][related-field][field][$operator]=values
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>filter[cars][driver][name][$eq]=Mark
 </code></pre></div></div>
 
-<p>In order to add the filter to the given scope use the <code class="highlighter-rouge">AddStringFilter</code> method to the query.Scope:</p>
+<p>In order to add the filter to the given scope use the <code class="highlighter-rouge">Filter</code> method to the query.Scope:</p>
 
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">AddStringFilter</span><span class="p">(</span><span class="s">"filter[cars][driver][name][$eq]"</span><span class="p">,</span><span class="x"> </span><span class="s">"Mark"</span><span class="p">);</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">Filter</span><span class="p">(</span><span class="s">"filter[cars][driver][name][$eq]"</span><span class="p">,</span><span class="x"> </span><span class="s">"Mark"</span><span class="p">);</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="c">// error occurs if the field doesn't exists</span><span class="x">
-    </span><span class="nb">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
 </span><span class="p">}</span><span class="x">
 
 </span></code></pre></div></div>
-
-<p>If the query filter is on the different collection use the <code class="highlighter-rouge">filters.NewStringFilter()</code> method</p>
 
 <h2 id="filterfield">FilterField</h2>
 
@@ -754,7 +755,7 @@ filter[collection][relationship-field][related-field][field][$operator]=values
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// import "github.com/neuronlabs/neuron/query/filters"</span><span class="x">
 
-</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">AddFilter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">NewFilter</span><span class="p">(</span><span class="n">doorField</span><span class="p">,</span><span class="x"> </span><span class="n">filters</span><span class="o">.</span><span class="n">OpGreaterEqual</span><span class="p">,</span><span class="x"> </span><span class="m">4</span><span class="p">))</span><span class="x">
+</span><span class="n">err</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">s</span><span class="o">.</span><span class="n">FilterField</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">NewFilter</span><span class="p">(</span><span class="n">doorField</span><span class="p">,</span><span class="x"> </span><span class="n">filters</span><span class="o">.</span><span class="n">OpGreaterEqual</span><span class="p">,</span><span class="x"> </span><span class="m">4</span><span class="p">))</span><span class="x">
 </span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="c">// the error might occur if the field is not found within the model's </span><span class="x">
     </span><span class="c">// struct field</span><span class="x">

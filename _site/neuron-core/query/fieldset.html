@@ -93,13 +93,13 @@
               <ul class="navigation-list-child-list ">
                 
                   
+                
+                  
                     <li class="navigation-list-item ">
                       
                       <a href="http://localhost:4000/neuron-core/controller.html" class="navigation-list-link">Controller</a>
                       
                     </li>
-                  
-                
                   
                 
                   
@@ -169,8 +169,6 @@
                             
                           
                             
-                          
-                            
                               <li class="navigation-list-item ">
                                 <a href="http://localhost:4000/neuron-core/models/relationship.html" class="navigation-list-link">Relationships</a>
                               </li>
@@ -208,11 +206,11 @@
                           
                             
                           
+                            
+                          
                         </ul>
                       
                     </li>
-                  
-                
                   
                 
                   
@@ -349,82 +347,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
-                      
-                      <a href="http://localhost:4000/neuron-core/errors/" class="navigation-list-link">Errors</a>
-                      
-                        
-                        <ul class="navigation-list-child-list">
-                          
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/errors/error_struct.html" class="navigation-list-link">Error Struct</a>
-                              </li>
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                              <li class="navigation-list-item ">
-                                <a href="http://localhost:4000/neuron-core/errors/class.html" class="navigation-list-link">Class</a>
-                              </li>
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                            
-                          
-                        </ul>
-                      
-                    </li>
+                
                   
                 
                   
@@ -458,6 +381,135 @@
       
     
       
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/errors" class="navigation-list-link">Errors</a>
+            
+              
+              <ul class="navigation-list-child-list ">
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="http://localhost:4000/errors/class.html" class="navigation-list-link">Class</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="http://localhost:4000/errors/errors.html" class="navigation-list-link">Error Interfaces and Structs</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
+            
+          </li>
         
       
     
@@ -539,54 +591,6 @@
               </ul>
             
           </li>
-        
-      
-    
-      
-        
-          <li class="navigation-list-item">
-            
-            <a href="http://localhost:4000/neuron-pq/" class="navigation-list-link">Postgres Repository</a>
-            
-          </li>
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <li class="navigation-list-item">
-            
-            <a href="http://localhost:4000/neuron-mongo/" class="navigation-list-link">Mongo Repository</a>
-            
-          </li>
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
         
       
     
@@ -679,11 +683,11 @@ all the possible model’s fields.</p>
 
 <p>The <code class="highlighter-rouge">*query.Scope</code> provide following methods for the access to the fieldset:</p>
 
-<h3 id="addtofieldset">AddToFieldset</h3>
+<h3 id="setfields">SetFields</h3>
 
 <p>Adds ‘fields’ to the fieldset of the scope. Each field might be a string struct field <strong>Name</strong>,  <strong>Neuron Name</strong> or a <strong>*mapping.StructField</strong>.
 Returns error if the field is not found within the query scope root model.</p>
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">scope</span><span class="o">.</span><span class="n">AddToSelectedFields</span><span class="p">(</span><span class="s">"Name"</span><span class="p">,</span><span class="x"> </span><span class="s">"custom_neuron_name"</span><span class="p">)</span><span class="x">
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">scope</span><span class="o">.</span><span class="n">SetFields</span><span class="p">(</span><span class="s">"Name"</span><span class="p">,</span><span class="x"> </span><span class="s">"custom_neuron_name"</span><span class="p">)</span><span class="x">
 </span></code></pre></div></div>
 
 <h3 id="list-fieldset">List Fieldset</h3>
