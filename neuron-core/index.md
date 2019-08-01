@@ -6,8 +6,7 @@ permalink: /neuron-core
 ---
 ![Logo](/logo.svg)
 
-# Core ORM [![Go Report Card](https://goreportcard.com/badge/github.com/neuronlabs/neuron-core)](https://goreportcard.com/report/github.com/neuronlabs/neuron-core) [![GoDoc](https://godoc.org/github.com/neuronlabs/neuron-core?status.svg)](https://godoc.org/github.com/neuronlabs/neuron-core) [![Build Status](https://travis-ci.com/neuronlabs/neuron-core.svg?branch=master)](https://travis-ci.com/neuronlabs/neuron-core) ![GitHub](https://img.shields.io/github/license/neuronlabs/neuron-core) ![GitHub release](https://img.shields.io/github/release-pre/neuronlabs/neuron-core)
-
+# Core ORM [![Github Repository](/GitHub-Mark-32px.png)](https://github.com/neuronlabs/neuron-core) [![GoDoc](https://godoc.org/github.com/neuronlabs/neuron-core?status.svg)](https://godoc.org/github.com/neuronlabs/neuron-core) [![Go Report Card](https://goreportcard.com/badge/github.com/neuronlabs/neuron-core)](https://goreportcard.com/report/github.com/neuronlabs/neuron-core) ![GitHub](https://img.shields.io/github/license/neuronlabs/neuron-core) ![GitHub release](https://img.shields.io/github/release-pre/neuronlabs/neuron-core) 
 
 Neuron-core is the golang cloud-native, distributed **ORM** implementation.
 

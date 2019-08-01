@@ -2,7 +2,9 @@
 nav_order: 4
 title: Postgres Repository
 ---
-# Postgres Repository
+![Logo](/logo.svg)
+
+# Postgres Repository [![Github Repository](/GitHub-Mark-32px.png)](https://github.com/neuronlabs/neuron-pq)
 
 Work in progress.
 
