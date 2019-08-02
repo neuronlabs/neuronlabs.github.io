@@ -13,6 +13,7 @@ aux_links:
     - "https://github.com/neuronlabs/neuron-gateway"
 plugins:
   - jekyll-relative-links
+  - jekyll-sitemap
 markdown: kramdown
 remote_theme: pmarsceill/just-the-docs
 theme: "just-the-docs"
