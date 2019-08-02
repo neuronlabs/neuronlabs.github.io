@@ -1,9 +1,12 @@
 ---
 parent: Query
 grand_parent: Core ORM
-Title: Transactions
+title: Transactions
 nav_order: 12
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Transactions
 
 Neuron core is a cloud ready query processor. It's design uses [SAGA](https://microservices.io/patterns/data/saga.html) like transactions in the queries. This concept allows to safe queries along multiple repositories.

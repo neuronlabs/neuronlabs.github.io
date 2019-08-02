@@ -5,6 +5,8 @@ nav_order: 3
 title: Relationships
 ---
 
+![Logo](/assets/img/logo.svg)
+
 # Relationship
 
 Relationship is the structure that contains information about the relationship field for given model.

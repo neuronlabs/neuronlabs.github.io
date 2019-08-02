@@ -1,10 +1,12 @@
 ---
+nav_order: 3
 title: Models
 parent: Core ORM
-nav_order: 3
 has_children: true
 permalink: /neuron-core/models
 ---
+
+![Logo](/assets/img/logo.svg)
 
 # Models
 

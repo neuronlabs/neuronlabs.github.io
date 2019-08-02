@@ -3,6 +3,9 @@ parent: Errors
 title: Class
 nav_order: 1
 ---
+
+![Logo](/assets/img/logo.svg)
+
 ## Comparing errors
 
 Standard golang errors are mostly compared by their messages.

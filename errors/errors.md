@@ -3,6 +3,9 @@ parent: Errors
 title: Error Interfaces and Structs
 nav_order: 2
 ---
+
+![Logo](/assets/img/logo.svg)
+
 ## Interfaces 
 
 The package provides simple error handling interfaces and functions.

@@ -5,6 +5,8 @@ nav_order: 9
 title: Selected Fields
 ---
 
+![Logo](/assets/img/logo.svg)
+
 # Selected Fields
 
 For the queries where the provided input model would have usable values, the selected field defines are the fields that should be used by the processor.

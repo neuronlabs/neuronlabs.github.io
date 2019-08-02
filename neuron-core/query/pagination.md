@@ -2,7 +2,11 @@
 parent: Query
 grand_parent: Core ORM
 nav_order: 11
+title: Pagination
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Pagination
 
 The neuron allows to reduce the number of the given list results. It provides the pagination system, on the `LimitOffset` or `Page` base.

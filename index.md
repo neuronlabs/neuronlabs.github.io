@@ -1,8 +1,10 @@
 ---
 nav_order: 1
 title: Neuron
+has_children: false
 ---
-![Logo](logo.svg)
+
+![Logo](/assets/img/logo.svg)
 
 # Neuron Labs
 

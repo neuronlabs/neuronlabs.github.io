@@ -4,6 +4,9 @@ grand_parent: Core ORM
 nav_order: 5
 title: Patch
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Patching single data
 
 The neuron allows to patch provided data instances in the repositories.

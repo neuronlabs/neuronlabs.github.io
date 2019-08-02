@@ -5,6 +5,8 @@ nav_order: 1
 title: Structure
 ---
 
+![Logo](/assets/img/logo.svg)
+
 # Model Structure
 
 The `*ModelStruct` is a data structure that stores all prepared information about the 'model'.

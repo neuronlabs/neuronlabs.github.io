@@ -2,7 +2,10 @@
 parent: Query
 grand_parent: Core ORM
 nav_order: 1
+title: Scope
 ---
+
+![Logo](/assets/img/logo.svg)
 
 # Scope
 

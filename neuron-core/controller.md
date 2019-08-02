@@ -1,7 +1,11 @@
 ---
 nav_order: 1
 parent: Core ORM
+title: Controller
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Controller
 
 Package: `github.com/neuronlabs/neuron-core/controller`

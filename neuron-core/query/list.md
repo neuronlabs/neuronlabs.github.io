@@ -4,6 +4,9 @@ grand_parent: Core ORM
 nav_order: 4
 title: List
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Listing data
 
 Listing the data is one of the most important ORM functions.

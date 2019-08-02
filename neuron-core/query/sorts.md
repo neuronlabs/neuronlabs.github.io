@@ -2,7 +2,11 @@
 parent: Query
 grand_parent: Core ORM
 nav_order: 10
+title: Sorts
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Sorts
 
 Neuron allows to sort the `List` method results. The sorting is based on the provided field's value. It allows both `ascending` and `desceding` ordering.

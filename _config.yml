@@ -16,6 +16,7 @@ plugins:
 markdown: kramdown
 remote_theme: pmarsceill/just-the-docs
 theme: "just-the-docs"
+title: Neuron Labs
 relative_links:
   enabled: true
   collections: true

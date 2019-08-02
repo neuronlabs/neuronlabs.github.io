@@ -4,6 +4,9 @@ grand_parent: Core ORM
 nav_order: 3
 title: Get
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Getting Single Data
 
 The neuron specifies separate function for getting just a single data instance from the repository.

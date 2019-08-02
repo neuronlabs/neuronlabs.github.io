@@ -2,9 +2,10 @@
 nav_order: 5
 title: Mongo Repository
 ---
-![Logo](/logo.svg)
 
-# Mongo Repository [![Github Repository](/GitHub-Mark-32px.png)](https://github.com/neuronlabs/neuron-mongo)
+![Logo](/assets/img/logo.svg)
+
+# Mongo Repository [![Github Repository](/assets/img/GitHub-Mark-32px.png)](https://github.com/neuronlabs/neuron-mongo)
 
 Work in progress.
 

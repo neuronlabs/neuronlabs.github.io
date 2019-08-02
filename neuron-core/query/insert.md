@@ -4,6 +4,9 @@ grand_parent: Core ORM
 nav_order: 2
 title: Insert
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Insert data
 
 In order to insert the data create a new query with the provided value:

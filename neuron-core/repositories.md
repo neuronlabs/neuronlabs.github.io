@@ -3,6 +3,9 @@ nav_order: 2
 parent: Core ORM
 title: Repositories
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Repositories
 
 Neuron-core use the repositories as the database/data store/service access.

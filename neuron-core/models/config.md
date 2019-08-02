@@ -5,6 +5,8 @@ nav_order: 4
 title: Config
 ---
 
+![Logo](/assets/img/logo.svg)
+
 # Config
 
 While registering the models, each ModelConfig defined under model's `collection` in the `Controller's` ` Config` would be set in the `ModelStruct` definition. 

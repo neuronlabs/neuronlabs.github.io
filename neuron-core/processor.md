@@ -1,8 +1,10 @@
 ---
+nav_order: 4
 parent: Core ORM
 title: Processor
-nav_order: 6
 ---
+
+![Logo](/assets/img/logo.svg)
 
 # Query Processor
 

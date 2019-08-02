@@ -2,7 +2,11 @@
 parent: Query
 grand_parent: Core ORM
 nav_order: 7
+title: Filters
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Filters 
 
 **Neuron**'s query results might get narrowed by the filters. 

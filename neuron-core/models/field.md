@@ -5,6 +5,8 @@ nav_order: 2
 title: Fields
 ---
 
+![Logo](/assets/img/logo.svg)
+
 # StructField
 
 A `*mapping.StructField` is the mapped model's field. It contains neuron information about given field, such as:

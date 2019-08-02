@@ -4,6 +4,9 @@ grand_parent: Core ORM
 nav_order: 8
 title: Fieldset
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Fieldset
 
 Query `fieldset` defines the fields that would be returned with the query resutls. It is used on results of `Get` and `List` methods.

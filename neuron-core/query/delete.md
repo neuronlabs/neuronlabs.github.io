@@ -4,6 +4,9 @@ grand_parent: Core ORM
 nav_order: 6
 title: Delete
 ---
+
+![Logo](/assets/img/logo.svg)
+
 # Deleting data
 
 Deleting the data instances is based on the query scope filters.
