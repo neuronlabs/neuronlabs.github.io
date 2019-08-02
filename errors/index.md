@@ -7,7 +7,7 @@ permalink: /errors
 
 ![Logo](/assets/img/logo.svg)
 
-# Errors [![Github Repository](/assets/img/GitHub-Mark-32px.png)](https://github.com/neuronlabs/errors) [![GoDoc](https://godoc.org/github.com/neuronlabs/errors?status.svg)](https://godoc.org/github.com/neuronlabs/errors) [![Go Report Card](https://goreportcard.com/badge/github.com/neuronlabs/errors)](https://goreportcard.com/report/github.com/neuronlabs/errors) [![Coverage Status](https://coveralls.io/repos/github/neuronlabs/errors/badge.svg?branch=master)](https://coveralls.io/github/neuronlabs/errors?branch=master) ![License](https://img.shields.io/github/license/neuronlabs/errors.svg) ![GitHub release](https://img.shields.io/github/release/neuronlabs/errors) 
+# Errors [![Github Repository](/assets/img/GitHub-Mark-32px.png)](https://github.com/neuronlabs/errors) [![GoDoc](https://godoc.org/github.com/neuronlabs/errors?status.svg)](https://godoc.org/github.com/neuronlabs/errors)  ![License](https://img.shields.io/github/license/neuronlabs/errors.svg) ![GitHub release](https://img.shields.io/github/release/neuronlabs/errors) 
 
 Standard golang errors are mostly compared by their messages.
 
